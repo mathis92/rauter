@@ -368,3 +368,7 @@ INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - arp destination ip192.168.
 INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - arp destination ip192.168.56.1 arp source  ip192.168.56.200
 INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - arp destination ip192.168.56.1 arp source  ip192.168.56.200
 INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - arp destination ip192.168.56.1 arp source  ip192.168.56.200
+INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - arp destination ip192.168.56.200 arp source  ip192.168.56.1
+INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - dostal som request arp pre mna 
+INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - arp destination ip192.168.56.200 arp source  ip192.168.56.1
+INFO Thread-4 sk.mathis.stuba.equip.PacketForwarder - dostal som request arp pre mna 
