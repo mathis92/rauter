@@ -1,0 +1,149 @@
+echo		7/tcp
+echo		7/udp
+discard		9/tcp		sink null
+discard		9/udp		sink null
+systat		11/tcp		users
+daytime		13/tcp
+daytime		13/udp
+netstat		15/tcp
+qotd		17/tcp		quote
+msp		18/tcp				# message send protocol
+msp		18/udp
+chargen		19/tcp		ttytst source
+chargen		19/udp		ttytst source
+ftp-data	20/tcp
+ftp		21/tcp
+fsp		21/udp		fspd
+ssh		22/tcp				# SSH Remote Login Protocol
+ssh		22/udp
+telnet		23/tcp
+smtp		25/tcp		mail
+time		37/tcp		timserver
+time		37/udp		timserver
+rlp		39/udp		resource	# resource location
+nameserver	42/tcp		name		# IEN 116
+whois		43/tcp		nicname
+domain		53/tcp				# name-domain server
+domain		53/udp
+tftp		69/udp
+finger		79/tcp
+www		80/tcp		http		# WorldWideWeb HTTP
+www		80/udp				# HyperText Transfer Protocol
+link		87/tcp		ttylink
+hostnames	101/tcp		hostname	# usually from sri-nic
+rtelnet		107/tcp				# Remote Telnet
+rtelnet		107/udp
+pop2		109/tcp		postoffice pop-2 # POP version 2
+pop2		109/udp		pop-2
+pop3		110/tcp		pop-3		# POP version 3
+pop3		110/udp		pop-3
+sunrpc		111/tcp		portmapper	# RPC 4.0 portmapper
+sunrpc		111/udp		portmapper
+auth		113/tcp		authentication tap ident
+sftp		115/tcp
+uucp-path	117/tcp
+nntp		119/tcp		readnews untp	# USENET News Transfer Protocol
+ntp		123/tcp
+ntp		123/udp				# Network Time Protocol
+netbios-ns	137/tcp				# NETBIOS Name Service
+netbios-ns	137/udp
+netbios-dgm	138/tcp				# NETBIOS Datagram Service
+netbios-dgm	138/udp
+netbios-ssn	139/tcp				# NETBIOS session service
+netbios-ssn	139/udp
+imap2		143/tcp		imap		# Interim Mail Access P 2 and 4
+imap2		143/udp		imap
+snmp		161/tcp				# Simple Net Mgmt Protocol
+snmp		161/udp				# Simple Net Mgmt Protocol
+snmp-trap	162/tcp		snmptrap	# Traps for SNMP
+snmp-trap	162/udp		snmptrap	# Traps for SNMP
+bgp		179/tcp				# Border Gateway Protocol
+bgp		179/udp
+qmtp		209/tcp				# Quick Mail Transfer 
+qmtp		209/udp				# Quick Mail Transfer 
+ipx		213/tcp				# IPX
+ipx		213/udp
+imap3		220/tcp				# Interactive Mail Access
+imap3		220/udp				# Protocol v3
+rpc2portmap	369/tcp
+rpc2portmap	369/udp				# Coda portmapper
+imsp		406/tcp			# Interactive Mail Support 
+imsp		406/udp
+https		443/tcp				# http protocol over 
+https		443/udp
+snpp		444/tcp				# Simple Network Paging 
+snpp		444/udp
+isakmp		500/tcp			# IPsec - Internet Security 
+isakmp		500/udp			#  and Key Management 
+rtsp		554/tcp			# Real Time Stream Control 
+rtsp		554/udp			# Real Time Stream Control 
+exec		512/tcp
+biff		512/udp		comsat
+login		513/tcp
+who		513/udp		whod
+shell		514/tcp		cmd		# no passwords used
+syslog		514/udp
+printer		515/tcp		spooler		# line printer 
+route		520/udp		router routed	# RIP
+netnews		532/tcp		readnews
+netwall		533/udp		# for emergency broadcasts
+dhcpv6-client	546/tcp
+dhcpv6-client	546/udp
+dhcpv6-server	547/tcp
+dhcpv6-server	547/udp
+remotefs	556/tcp		rfs_server rfs	# Brunhoff remote 
+nntps		563/tcp		snntp		# NNTP over SSL
+nntps		563/udp		snntp
+submission	587/tcp				# Submission [RFC4409]
+submission	587/udp
+webster		765/tcp				# Network dictionary
+webster		765/udp
+rsync		873/tcp
+rsync		873/udp
+ftps-data	989/tcp				# FTP over SSL (data)
+ftps		990/tcp
+telnets		992/tcp				# Telnet over SSL
+telnets		992/udp
+pop3s		995/tcp				# POP-3 over SSL
+pop3s		995/udp
+rootd		1094/tcp
+rootd		1094/udp
+ms-sql-s	1433/tcp			# Microsoft SQL Server
+ms-sql-s	1433/udp
+ms-sql-m	1434/tcp			# Microsoft SQL Monitor
+log-server	1958/tcp			# remstats log server
+remoteping	1959/tcp			# remstats remoteping server
+cisco-sccp	2000/tcp			# Cisco SCCP
+cisco-sccp	2000/udp
+search		2010/tcp	ndtp
+pipe_server	2010/tcp
+nfs		2049/tcp			# Network File System
+nfs		2049/udp			# Network File System
+gsigatekeeper	2119/tcp
+gsigatekeeper	2119/udp
+gris		2135/tcp		# Grid Resource Information Server
+gris		2135/udp		# Grid Resource Information Server
+mysql		3306/tcp
+mysql		3306/udp
+rfe		5002/udp			# Radio Free Ethernet
+rfe		5002/tcp
+mmcc		5050/tcp	# multimedia conference control tool (Yahoo 
+mmcc		5050/udp
+sip		5060/tcp			# Session Initiation Protocol
+sip		5060/udp
+sip-tls		5061/tcp
+sip-tls		5061/udp
+aol		5190/tcp			# AIM
+aol		5190/udp
+xmpp-client	5222/tcp	jabber-client	# Jabber Client 
+xmpp-client	5222/udp	jabber-client
+xmpp-server	5269/tcp	jabber-server	# Jabber Server 
+xmpp-server	5269/udp	jabber-server
+mdns		5353/tcp			# Multicast DNS
+mdns		5353/udp			# Multicast DNS
+postgresql	5432/tcp	postgres	# PostgreSQL Database
+postgresql	5432/udp	postgres
+mysql-proxy	6446/tcp			# MySQL Proxy
+mysql-proxy	6446/udp			# MySQL Proxy
+http-alt	8080/tcp	webcache	# WWW caching service
+http-alt	8080/udp			# WWW caching service

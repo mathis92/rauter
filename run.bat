@@ -1,0 +1,1 @@
+java -Djava.library.path=dlls -jar target\Router-1.0-SNAPSHOT.jar
