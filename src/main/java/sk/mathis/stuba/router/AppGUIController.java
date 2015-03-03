@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.jnetpcap.PcapIf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sk.mathis.stuba.equip.Port;
+import sk.mathis.stuba.equip.PacketReceiver;
 
 /**
  *
@@ -39,7 +39,7 @@ public class AppGUIController implements Runnable {
 
     public void updateTextArea() {
         gui.getjTextArea1().removeAll();
-        for (Port port : manager.getAvailiablePorts()) {
+        for (PacketReceiver port : manager.getAvailiablePorts()) {
             gui.getjTextArea1().append(port.getPortName() + " " + port.getPcapIfPort().getAddresses() + " " + port.getPcapIfPort().getDescription() + "\n");
         }
 

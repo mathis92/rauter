@@ -16,16 +16,16 @@ import org.jnetpcap.packet.PcapPacket;
 public class Packet {
 
     PcapPacket packet;
-    Port port;
+    PacketReceiver port;
     Pcap pcap;
 
-    public Packet(PcapPacket packet, Port port, Pcap pcap) {
+    public Packet(PcapPacket packet, PacketReceiver port, Pcap pcap) {
         this.packet = packet;
         this.port = port;
         this.pcap = pcap;
     }
 
-    public Port getPort() {
+    public PacketReceiver getPort() {
         return port;
     }
 

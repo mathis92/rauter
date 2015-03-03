@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.analysers.Analyser;
 import sk.mathis.stuba.analysers.Frame;
+import sk.mathis.stuba.arp.ArpTable;
 
 /**
  *
@@ -24,14 +25,15 @@ public class PacketForwarder implements Runnable {
     private Queue<Packet> buffer;
     private PacketSender sender;
     private Analyser analyser;
+    ArpTable arpTable = null;
     private List<PacketReceiver> receiverList;
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(PacketForwarder.class);
 
-    public PacketForwarder(Queue<Packet> buffer, List<Port> portList, List<PacketReceiver> receiverList) {
+    public PacketForwarder(Queue<Packet> buffer, List<PacketReceiver> portList) {
         this.buffer = buffer;
-        this.receiverList = receiverList;
-        this.sender = new PacketSender(portList, receiverList);
         this.analyser = new Analyser();
+        arpTable = new ArpTable();
+        new Thread(arpTable).start();
     }
 
     @Override
@@ -47,21 +49,17 @@ public class PacketForwarder implements Runnable {
                     if (Arrays.equals(pckt.getPort().getIpAddress(), frame.getArpParser().getDestinationIPbyte())) {
                         if (frame.getArpParser().getOperationType().equalsIgnoreCase("arp-request")) {
                             logger.info("dostal som request arp pre mna ");
-                            
                             byte[] arpReply = PacketGenerator.arpReply(pckt.getPort().getIpAddress(), frame.getArpParser().getSourceIPbyte(), pckt.getPort().getMacAddress(), frame.getArpParser().getSourceMACbyte());
-                            for (int i = 0; i < 42; i++) {
-                                System.out.print(arpReply[i] + " ");
-                            }
-                            
-                            sender.sendPacket(arpReply,pckt.getPort());
+                            pckt.getPcap().sendPacket(arpReply);
+                            arpTable.updateItemTime(frame.getArpParser().getSourceIPbyte(), frame.getSrcMacAddress(), pckt.getPort());
                         }
                     }
                 }
-                
+
                 if (frame.getIsIpv4()) {
-                if(frame.getIpv4parser().getIsIcmp()){
-                    
-                }
+                    if (frame.getIpv4parser().getIsIcmp()) {
+                  //          Packet icmpReply = PacketGenerator.icmpReply(pckt, pckt.getPort().getIpAddress(), frame.getIpv4parser().getSourceIPbyte(), pckt.getPort().getMacAddress(), frame.getSrcMacAddress());
+                    }
                     // logger.info("source ip " +DataTypeHelper.ipAdressConvertor(frame.getIpv4parser().getSourceIPbyte()) +" "+ DataTypeHelper.ipAdressConvertor(frame.getIpv4parser().getDestinationIPbyte()));
                 }
                //logger.info(pckt.getPort().getPortName() + " " + pckt.getPacket().getCaptureHeader());

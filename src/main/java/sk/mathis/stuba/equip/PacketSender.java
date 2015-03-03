@@ -16,12 +16,12 @@ import org.jnetpcap.PcapIf;
 public class PacketSender {
 
     byte[] packetByteArray;
-    List<Port> portList;
+    
     List<PacketReceiver> receivedList;
     private Integer sent = 0;
 
-    public PacketSender(List<Port> portList, List<PacketReceiver> receivedList) {
-        this.portList = portList;
+    public PacketSender( List<PacketReceiver> receivedList) {
+        
         this.receivedList = receivedList;
     }
 
@@ -51,17 +51,17 @@ public class PacketSender {
 
         }
     }
-     public void sendPacket(byte[] packet, Port port) {
+     public void sendPacket(byte[] packet) {
         sent = 0;
         // System.out.println(packet.getPacket().getCaptureHeader().caplen());
         this.packetByteArray = packet;
 
         for (PacketReceiver packetReceiver : receivedList) {
-            if(packetReceiver.getPort().getPortName().equals(port.getPortName())){
+          //  if(packetReceiver.getPort().getPortName().equals(port.getPortName())){
             if (packetReceiver.getPcap().sendPacket(packetByteArray) != Pcap.OK) {
                 System.err.println("SE TO DO*EBAUO");
             }
-            }
+        //    }
 
         }
 

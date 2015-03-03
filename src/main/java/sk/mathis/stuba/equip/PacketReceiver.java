@@ -5,8 +5,10 @@
  */
 package sk.mathis.stuba.equip;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Queue;
+import java.util.logging.Level;
 import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
 import org.jnetpcap.packet.PcapPacket;
@@ -20,7 +22,6 @@ import org.slf4j.LoggerFactory;
  */
 public class PacketReceiver implements Runnable {
 
-    private final Port port;
     private final StringBuilder errbuf = new StringBuilder();
     private final Queue<Packet> buffer;
     private Pcap pcap;
@@ -28,10 +29,26 @@ public class PacketReceiver implements Runnable {
     private Boolean run = true;
     private static final Logger logger = LoggerFactory.getLogger(PacketReceiver.class);
 
-    public PacketReceiver(Port port, Queue<Packet> buffer) {
+    private String portName;
+    private PcapIf port;
+    private String ip = "192.168.56.200";
+    private byte[] ipAddress = DataTypeHelper.ipAddressToByte(ip);
+    private byte[] macAddress;
+    private byte[] subnetMask;
+    private PacketReceiver packetReceiver = this;
+
+    public PacketReceiver(PcapIf port, Queue<Packet> buffer, String portName) {
         this.port = port;
         this.buffer = buffer;
         this.pcap = null;
+        
+        try {
+            macAddress = port.getHardwareAddress();
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PacketReceiver.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.portName = portName;
 
     }
 
@@ -41,14 +58,14 @@ public class PacketReceiver implements Runnable {
         int snaplen = 64 * 1024;           // Capture all packets, no trucation  
         int flags = Pcap.MODE_PROMISCUOUS; // capture all packets  
         int timeout = 10 * 1000;           // 10 seconds in millis  
-        pcap = Pcap.openLive(port.getPcapIfPort().getName(), snaplen, flags, timeout, errbuf);
+        pcap = Pcap.openLive(port.getName(), snaplen, flags, timeout, errbuf);
         PcapPacketHandler<String> jpacketHandler = new PcapPacketHandler<String>() {
             @Override
             public void nextPacket(PcapPacket packet, String user) {
 
                 if (packet != null) {
                     //logger.debug("PacketReceiver Start");
-                    pckt = new Packet(packet, port, pcap);
+                    pckt = new Packet(packet, packetReceiver, pcap);
                     buffer.add(pckt);
                 }
             }
@@ -66,7 +83,7 @@ public class PacketReceiver implements Runnable {
 
     public void startThread() {
         this.run = true;
-        System.out.println("zapinam thread na " + port.getPcapIfPort().getName());
+        System.out.println("zapinam thread na " + port.getName());
         new Thread(this).start();
     }
 
@@ -78,8 +95,36 @@ public class PacketReceiver implements Runnable {
         return pcap;
     }
 
-    public Port getPort() {
+    public PcapIf getPcapIfPort() {
         return port;
+    }
+
+    public String getPortName() {
+        return portName;
+    }
+
+    public byte[] getIpAddress() {
+        return ipAddress;
+    }
+
+    public PcapIf getPort() {
+        return port;
+    }
+
+    public byte[] getSubnetMask() {
+        return subnetMask;
+    }
+
+    public byte[] getMacAddress() {
+        return macAddress;
+    }
+
+    public void setIpAddress(byte[] ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public void setSubnetMask(byte[] subnetMask) {
+        this.subnetMask = subnetMask;
     }
 
 }

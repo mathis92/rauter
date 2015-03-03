@@ -17,11 +17,12 @@ import java.util.logging.Logger;
 import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
 import org.slf4j.LoggerFactory;
+import sk.mathis.stuba.arp.ArpTable;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
 import sk.mathis.stuba.equip.PacketForwarder;
 import sk.mathis.stuba.equip.PacketReceiver;
-import sk.mathis.stuba.equip.Port;
+
 
 /**
  *
@@ -29,16 +30,19 @@ import sk.mathis.stuba.equip.Port;
  */
 public class RouterManager {
 
-    List<Port> availiablePorts;
+    List<PacketReceiver> availiablePorts;
     List<PacketReceiver> receiverList = null;
     PacketForwarder packetForwarder = null;
     Queue<Packet> packetBuffer;
+    
+
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RouterManager.class);
 
     public RouterManager() {
         availiablePorts = new ArrayList<>();
         receiverList = new ArrayList<>();
         packetBuffer = new ConcurrentLinkedQueue<>();
+        
         try {
             DataTypeHelper.scanPortsFile();
             DataTypeHelper.scanProtocolFile();
@@ -66,26 +70,28 @@ public class RouterManager {
         for (PcapIf port : ports) {
             System.out.println(port.getName() + " " + DataTypeHelper.macAdressConvertor(port.getHardwareAddress()));
             
-            availiablePorts.add(new Port("fastEthernet 0/" + portNum, port));
+            availiablePorts.add(new PacketReceiver(port, packetBuffer, "fastEthernet 0/" + portNum));
         }
     }
 
-    public List<Port> getAvailiablePorts() {
-        return availiablePorts;
-    }
+   
 
     public void start() {
         System.out.println("Router manager start");
         logger.debug(availiablePorts.size() + " Router Manager start");
         if (!availiablePorts.isEmpty()) {
-            for (Port port : availiablePorts) {
-                PacketReceiver tmpReceiver = new PacketReceiver(port, packetBuffer);
-                receiverList.add(tmpReceiver);
-                tmpReceiver.startThread();
+            for (PacketReceiver port : availiablePorts) {
+                port.startThread();
             }
-            packetForwarder = new PacketForwarder(packetBuffer, availiablePorts, receiverList);
+            packetForwarder = new PacketForwarder(packetBuffer, availiablePorts);
             new Thread(packetForwarder).start();
             System.out.println("zapol som RouterManager");
         }
     }
+
+    public List<PacketReceiver> getAvailiablePorts() {
+        return availiablePorts;
+    }
+    
+    
 }

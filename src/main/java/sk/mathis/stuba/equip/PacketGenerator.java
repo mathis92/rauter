@@ -23,7 +23,7 @@ public class PacketGenerator {
         ByteArrayOutputStream arpReply = new ByteArrayOutputStream(42);
         arpReply.write(destinationMAC, 0, 6);
         arpReply.write(sourceMAC, 0, 6);
-        
+
         arp[0] = 8;
         arp[1] = 6;
         arp[2] = 0;
@@ -43,4 +43,20 @@ public class PacketGenerator {
         return arpReply.toByteArray();
     }
 
+   /* public static Packet icmpReply(Packet packet, byte[] sourceIP, byte[] destinationIP, byte[] sourceMAC, byte[] destinationMAC) {
+        Packet icmpReply = null;
+        packet.getPacket().setByteArray(0, destinationMAC);
+        packet.getPacket().setByteArray(6, sourceMAC);
+        packet.getPacket().setByteArray(22, CHECKSUM);
+        packet.getPacket().setByteArray(26, sourceIP);
+        packet.getPacket().setByteArray(30, destinationIP);
+        byte[] typeCodeCheckSum = new byte[4];
+        typeCodeCheckSum[0] = 0;
+        typeCodeCheckSum[1] = 0;
+        typeCodeCheckSum[2] = 0;
+        typeCodeCheckSum[3] = 0;
+        packet.getPacket().setByteArray(36, typeCodeCheckSum);
+        
+        return icmpReply;
+    }*/
 }
