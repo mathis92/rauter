@@ -29,7 +29,7 @@ public class ArpParser implements IAnalyser {
 
     @Override
     public void analyse() {
-        byte[] opType = packet.getByteArray(14, 2);
+        byte[] opType = packet.getByteArray(20, 2);
         if (DataTypeHelper.toInt(opType) == 1) {
             operationType = "ARP-Request";
         } else if (DataTypeHelper.toInt(opType) == 2) {

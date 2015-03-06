@@ -8,6 +8,8 @@ package sk.mathis.stuba.equip;
 import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
 import org.jnetpcap.packet.PcapPacket;
+import sk.mathis.stuba.analysers.Analyser;
+import sk.mathis.stuba.analysers.Frame;
 
 /**
  *
@@ -18,11 +20,13 @@ public class Packet {
     PcapPacket packet;
     PacketReceiver port;
     Pcap pcap;
+    Frame frame;
 
     public Packet(PcapPacket packet, PacketReceiver port, Pcap pcap) {
         this.packet = packet;
         this.port = port;
         this.pcap = pcap;
+        frame = new Analyser().analyzePacket(packet);
     }
 
     public PacketReceiver getPort() {
@@ -32,11 +36,22 @@ public class Packet {
     public PcapPacket getPacket() {
         return packet;
     }
-
-
-
+    
     public Pcap getPcap() {
         return pcap;
     }
+
+    public void setPcap(Pcap pcap) {
+        this.pcap = pcap;
+    }
+
+    public void setPcapPacket(PcapPacket packet) {
+        this.packet = packet;
+    }
+
+    public Frame getFrame() {
+        return frame;
+    }
+    
 
 }

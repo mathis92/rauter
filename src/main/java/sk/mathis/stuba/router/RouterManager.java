@@ -18,11 +18,11 @@ import org.jnetpcap.Pcap;
 import org.jnetpcap.PcapIf;
 import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.arp.ArpTable;
+import sk.mathis.stuba.equip.ArpPacketForwarder;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
 import sk.mathis.stuba.equip.PacketForwarder;
 import sk.mathis.stuba.equip.PacketReceiver;
-
 
 /**
  *
@@ -34,7 +34,8 @@ public class RouterManager {
     List<PacketReceiver> receiverList = null;
     PacketForwarder packetForwarder = null;
     Queue<Packet> packetBuffer;
-    
+    Queue<Packet> arpPacketBuffer;
+    ArpTable arpTable;
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RouterManager.class);
 
@@ -42,14 +43,18 @@ public class RouterManager {
         availiablePorts = new ArrayList<>();
         receiverList = new ArrayList<>();
         packetBuffer = new ConcurrentLinkedQueue<>();
-        
+        arpPacketBuffer = new ConcurrentLinkedQueue<>();
+        arpTable = new ArpTable();
+        new Thread(arpTable).start();
+        Thread thread = new Thread(new ArpPacketForwarder(arpPacketBuffer, arpTable));
+        thread.start();
         try {
             DataTypeHelper.scanPortsFile();
             DataTypeHelper.scanProtocolFile();
         } catch (IOException ex) {
             Logger.getLogger(RouterManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             findDevices();
         } catch (IOException ex) {
@@ -69,12 +74,10 @@ public class RouterManager {
         int portNum = 0;
         for (PcapIf port : ports) {
             System.out.println(port.getName() + " " + DataTypeHelper.macAdressConvertor(port.getHardwareAddress()));
-            
-            availiablePorts.add(new PacketReceiver(port, packetBuffer, "fastEthernet 0/" + portNum));
+            availiablePorts.add(new PacketReceiver(port, packetBuffer, arpPacketBuffer, "fastEthernet 0/" + portNum, arpTable));
+            portNum++;
         }
     }
-
-   
 
     public void start() {
         System.out.println("Router manager start");
@@ -83,7 +86,7 @@ public class RouterManager {
             for (PacketReceiver port : availiablePorts) {
                 port.startThread();
             }
-            packetForwarder = new PacketForwarder(packetBuffer, availiablePorts);
+            packetForwarder = new PacketForwarder(packetBuffer, arpPacketBuffer, arpTable, availiablePorts);
             new Thread(packetForwarder).start();
             System.out.println("zapol som RouterManager");
         }
@@ -92,6 +95,11 @@ public class RouterManager {
     public List<PacketReceiver> getAvailiablePorts() {
         return availiablePorts;
     }
+
+    public ArpTable getArpTable() {
+        return arpTable;
+    }
+
     
-    
+   
 }

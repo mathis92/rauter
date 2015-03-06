@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +56,27 @@ public class DataTypeHelper {
         return result;
 
     }
-
+    public final static short getUnsignedByteValue(byte b) {
+        if (b < 0) {
+            return (short) (b & 0xff);
+        } else {
+            return b;
+        }
+    }
+    
+    public final static int getUnsignedShortValue(short s) {
+        if (s < 0) {
+            return (s & 0xffff);
+        } else {
+            return s;
+        }
+    }
+    public final static int getUnsignedShortFromBytes(byte msb, byte lsb) {
+        short targetShort = DataTypeHelper.getUnsignedByteValue(lsb);
+        targetShort |= (msb << 8);
+        return DataTypeHelper.getUnsignedShortValue(targetShort);
+    }
+    
     public static String bToString(byte singleByte) {
         StringBuilder newString = new StringBuilder();
         newString.append(String.format("%02X", singleByte));
@@ -72,7 +93,6 @@ public class DataTypeHelper {
             }
         }
         return macAdress;
-
     }
 
     public static String getUdpPortName(Integer port) {
@@ -198,7 +218,7 @@ public class DataTypeHelper {
         }
     }
 
-    public final static byte[] ipAddressToByteFromString(String addr){
+    public final static byte[] ipAddressToByteFromString(String addr) {
         InetAddress ipAddress = null;
         try {
             ipAddress = InetAddress.getByName(addr);
@@ -207,16 +227,24 @@ public class DataTypeHelper {
         }
         return ipAddress.getAddress();
     }
+
+    public static byte[] broadcastMacAddr(){
+        byte[] broadcast = new byte[6];
+        for (int i = 0; i < 6; i++) {
+            broadcast[i] = (byte) 0xff;
+        }
+        return broadcast;
+    }
     
     public final static byte[] ipAddressToByte(String addr) {
-        
-      // Convert the TCP/IP address string to an integer value
+
+        // Convert the TCP/IP address string to an integer value
         int ipInt = parseNumericAddress(addr);
         if (ipInt == 0) {
             return null;
         }
 
-      // Convert to bytes
+        // Convert to bytes
         byte[] ipByts = new byte[4];
 
         ipByts[3] = (byte) (ipInt & 0xFF);
@@ -224,54 +252,76 @@ public class DataTypeHelper {
         ipByts[1] = (byte) ((ipInt >> 16) & 0xFF);
         ipByts[0] = (byte) ((ipInt >> 24) & 0xFF);
 
-      // Return the TCP/IP bytes
+        // Return the TCP/IP bytes
         return ipByts;
     }
-    
-    public final static int parseNumericAddress(String ipaddr) {
-  
-    //  Check if the string is valid
-    
-    if ( ipaddr == null || ipaddr.length() < 7 || ipaddr.length() > 15)
-      return 0;
-      
-    //  Check the address string, should be n.n.n.n format
-    
-    StringTokenizer token = new StringTokenizer(ipaddr,".");
-    if ( token.countTokens() != 4)
-      return 0;
 
-    int ipInt = 0;
-    
-    while ( token.hasMoreTokens()) {
-      
-      //  Get the current token and convert to an integer value
-      
-      String ipNum = token.nextToken();
-      
-      try {
-        
-        //  Validate the current address part
-        
-        int ipVal = Integer.valueOf(ipNum).intValue();
-        if ( ipVal < 0 || ipVal > 255)
-          return 0;
-          
-        //  Add to the integer address
-        
-        ipInt = (ipInt << 8) + ipVal;
-      }
-      catch (NumberFormatException ex) {
-        return 0;
-      }
+    public final static int parseNumericAddress(String ipaddr) {
+
+        //  Check if the string is valid
+        if (ipaddr == null || ipaddr.length() < 7 || ipaddr.length() > 15) {
+            return 0;
+        }
+
+        //  Check the address string, should be n.n.n.n format
+        StringTokenizer token = new StringTokenizer(ipaddr, ".");
+        if (token.countTokens() != 4) {
+            return 0;
+        }
+
+        int ipInt = 0;
+
+        while (token.hasMoreTokens()) {
+
+            //  Get the current token and convert to an integer value
+            String ipNum = token.nextToken();
+
+            try {
+
+                //  Validate the current address part
+                int ipVal = Integer.valueOf(ipNum).intValue();
+                if (ipVal < 0 || ipVal > 255) {
+                    return 0;
+                }
+
+                //  Add to the integer address
+                ipInt = (ipInt << 8) + ipVal;
+            } catch (NumberFormatException ex) {
+                return 0;
+            }
+        }
+
+        //  Return the integer address
+        return ipInt;
     }
-    
-    //  Return the integer address
-    
-    return ipInt;
-  }
-    
-    
+
+    public final static byte[] getUnsignedShort(int value) {
+        byte[] data = new byte[2];
+        data[0] = (byte) ((value & 0xffffffff) >> 8);
+        data[1] = (byte) (value & 0xffffffff);
+        return data;
+    }
+
+    public static byte[] longToBytes(long x) {
+        ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
+        buffer.putLong(x);
+        return buffer.array();
+    }
+
+    public final static long RFC1071Checksum(byte[] buf, int length) {
+        int i = 0;
+        long sum = 0;
+        while (length > 0) {
+            sum += (buf[i++] & 0xff) << 8;
+            if ((--length) == 0) {
+                break;
+            }
+            sum += (buf[i++] & 0xff);
+            --length;
+        }
+
+        return (~((sum & 0xFFFF) + (sum >> 16))) & 0xFFFF;
+    }
 
     public static String getStringFromArray() {
         String output = null;

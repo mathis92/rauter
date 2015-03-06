@@ -8,7 +8,11 @@ package sk.mathis.stuba.router;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import sk.mathis.stuba.equip.PacketReceiver;
 
 /**
  *
@@ -19,6 +23,7 @@ public class AppGUI extends javax.swing.JFrame {
     /**
      * Creates new form AppGUI
      */
+    AppGUIController guiController;
     public AppGUI() throws IOException {
         initComponents();
         initialize();
@@ -33,30 +38,19 @@ public class AppGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        mainTabPane = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
         );
 
         pack();
@@ -105,19 +99,18 @@ public class AppGUI extends javax.swing.JFrame {
     }
     
     public void initialize() throws IOException{
-        AppGUIController guiController = new AppGUIController(this);
+        guiController = new AppGUIController(this);
         Thread guiControllerThread = new Thread(guiController);
         guiControllerThread.start();
-        System.out.println(guiControllerThread.toString());
+       // System.out.println(guiControllerThread.toString());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTabbedPane mainTabPane;
     // End of variables declaration//GEN-END:variables
 
-    public JTextArea getjTextArea1() {
-        return jTextArea1;
+    public JTabbedPane getMainTabPane() {
+        return mainTabPane;
     }
-
+ 
 }

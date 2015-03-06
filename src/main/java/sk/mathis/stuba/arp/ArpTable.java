@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sk.mathis.stuba.equip.DataTypeHelper;
+import sk.mathis.stuba.equip.Packet;
+import sk.mathis.stuba.equip.PacketGenerator;
 import sk.mathis.stuba.equip.PacketReceiver;
 
 /**
@@ -28,10 +30,24 @@ public class ArpTable implements Runnable {
         arpTableList = new ArrayList<>();
     }
 
-    public void addItem(ArpTableItem item) {
-        arpTableList.add(item);
-        for (ArpTableItem atItem : arpTableList) {
-            System.out.println("ipAddress " + DataTypeHelper.ipAdressConvertor(atItem.getIpAddress()) + " macAddress " + DataTypeHelper.macAdressConvertor(atItem.getMacAddress()) + " port " + atItem.getPort().getPortName() + " time " + (atItem.getTimeOfAdd().getTime() - new Date().getTime()));
+    public void addOrUpdateItem(ArpTableItem item) {
+  //      System.out.println("volam add or update item ");
+        boolean contains = false;
+        ArpTableItem atItem = null;
+
+        for (ArpTableItem tmp : arpTableList) {
+            if (Arrays.equals(tmp.getIpAddress(), item.getIpAddress()) && tmp.getPort().getPortName().equals(item.getPort().getPortName())) {
+                contains = true;
+                atItem = tmp;
+                break;
+            }
+        }
+        if (contains) {
+//            System.out.println("NASIEL SOM ZAZNAM V ARP TABULKE IDEM UPDATOVAT TIME");
+            atItem.updateTime();
+            atItem.storeMacAddress(item.getMacAddress());
+        } else {
+            arpTableList.add(item);
         }
     }
 
@@ -47,34 +63,58 @@ public class ArpTable implements Runnable {
         }
     }
 
-    public void checkTime() {
-        for (ArpTableItem atItem : arpTableList) {
-            System.out.println("ipAddress " + DataTypeHelper.ipAdressConvertor(atItem.getIpAddress()) + " macAddress " + DataTypeHelper.macAdressConvertor(atItem.getMacAddress()) + " port " + atItem.getPort().getPortName() + " time " + (atItem.getTimeOfAdd().getTime() - new Date().getTime()));
+    public ArpTableItem resolveArp(Packet packet) {
+        ArpTableItem item = null;
+        for (ArpTableItem arpItem : arpTableList) {
+            if (Arrays.equals(arpItem.getIpAddress(), packet.getFrame().getIpv4parser().getSourceIPbyte())) {
+                item = arpItem;
+            }
         }
+       // System.out.println("resolveArp " + item);
+        if (item == null) {
+            ArpTableItem newArpTableItem = new ArpTableItem(packet.getPort(), packet.getFrame().getIpv4parser().getSourceIPbyte(), null);
+            arpTableList.add(newArpTableItem);
+            byte[] arpRequest = PacketGenerator.arpRequest(packet.getPort().getIpAddress(), packet.getFrame().getIpv4parser().getSourceIPbyte(), packet.getPort().getMacAddress(), DataTypeHelper.broadcastMacAddr());
+            packet.getPcap().sendPacket(arpRequest);
+        //    System.out.println("poslal som arpRequest a cakam ");
+            try {
+                synchronized (newArpTableItem.getArpRequestLock()) {
+                    newArpTableItem.getArpRequestLock().wait(2000);
+                    item = newArpTableItem;
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ArpTable.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return item;
+    }
+
+    public void checkTime() {
+
         for (Iterator<ArpTableItem> atItem = arpTableList.iterator(); atItem.hasNext();) {
             currentTime = new Date();
             ArpTableItem item = atItem.next();
-            if ((currentTime.getTime() - item.getTimeOfAdd().getTime()) > 100000) {
+            if ((currentTime.getTime() - item.getTimeOfAdd().getTime()) > 20000) {
                 atItem.remove();
+          //      System.out.println("ITEM REMOVED");
+                // System.out.println("ipAddress " + DataTypeHelper.ipAdressConvertor(item.getIpAddress()) + " macAddress " + DataTypeHelper.macAdressConvertor(item.getMacAddress()) + " port " + item.getPort().getPortName() + " time " + (item.getTimeOfAdd().getTime() - new Date().getTime()));
             }
         }
     }
 
-    public void updateItemTime(byte[] ipAddress, byte[] macAddress, PacketReceiver port) {
-        int found = 0;
-        for (Iterator<ArpTableItem> atItem = arpTableList.iterator(); atItem.hasNext();) {
-            currentTime = new Date();
-            ArpTableItem item = atItem.next();
-            if (Arrays.equals(item.getIpAddress(), ipAddress) && Arrays.equals(item.getMacAddress(), macAddress) && item.getPort().getPortName().equals(port.getPortName())) {
-                found = 1;
-                item.updateTime();
-            }
-            if (Arrays.equals(item.getIpAddress(), ipAddress) && Arrays.equals(item.getMacAddress(), macAddress) && !item.getPort().getPortName().equals(port.getPortName())) {
-                arpTableList.clear();
-            }
-        }
-        if (found == 0) {
-            addItem(new ArpTableItem(port, ipAddress, macAddress));
-        }
+    public void updateItemTime(ArpTableItem item) {
+        currentTime = new Date();
+        item.updateTime();
+        item.storeMacAddress(item.getMacAddress());
+        /*if (Arrays.equals(item.getIpAddress(), item.getIpAddress()) && Arrays.equals(item.getMacAddress(), item.getMacAddress()) && !item.getPort().getPortName().equals(item.getPort().getPortName())) {
+         arpTableList.clear();
+         }*/
     }
+
+    public List<ArpTableItem> getArpTableList() {
+        return arpTableList;
+    }
+    
+    
 }
