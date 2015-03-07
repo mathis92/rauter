@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.arp.ArpTableItem;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.routingTable.RoutingTable;
+import sk.mathis.stuba.routingTable.RoutingTableItem;
 
 /**
  *
@@ -26,12 +28,13 @@ public class AppGUIController implements Runnable {
     Integer availablePortsCount = 0;
     ArpTablePanel arpTablePanel;
     PortManagementPanel portManagementPanel;
+    RootingTablePanel routingTablePanel;
     private static final Logger logger = LoggerFactory.getLogger(AppGUIController.class);
 
     public AppGUIController(AppGUI gui) throws IOException {
         manager = new RouterManager();
         manager.start();
-        logger.debug("VAJSA");
+
         this.gui = gui;
         initialize();
     }
@@ -42,6 +45,7 @@ public class AppGUIController implements Runnable {
 
             fillArpTable();
             fillPortTable();
+            fillRootingTable();
 
             try {
                 Thread.sleep(500);
@@ -58,6 +62,9 @@ public class AppGUIController implements Runnable {
         portManagementPanel = new PortManagementPanel(this);
         gui.getMainTabPane().add(portManagementPanel).setName("PortManagement");
         gui.getMainTabPane().setTitleAt(1, "PortManagement");
+        routingTablePanel = new RootingTablePanel(manager);
+        gui.getMainTabPane().add(routingTablePanel).setName("RootingTable");
+        gui.getMainTabPane().setTitleAt(2, "RootingTable");
         fillPortManagementPanel();
     }
 
@@ -81,7 +88,7 @@ public class AppGUIController implements Runnable {
             data[0] = port.getPortName();
             data[1] = (port.getMacAddress() == null) ? "error" : DataTypeHelper.macAdressConvertor(port.getMacAddress());
             data[2] = (port.getIpAddress() == null) ? "not set" : DataTypeHelper.ipAdressConvertor(port.getIpAddress());
-           
+
             data[3] = "ZATIAL MFP";
             data[4] = (port.getSubnetMask() == null) ? "not set" : DataTypeHelper.ipAdressConvertor(port.getSubnetMask());
 
@@ -106,6 +113,30 @@ public class AppGUIController implements Runnable {
             arpTableModel.addRow(data);
         }
         arpTablePanel.getArpTable().setModel(arpTableModel);
+    }
+
+    public void fillRootingTable() {
+        Object[] data = new Object[6];
+        DefaultTableModel routingTableModel;
+        routingTableModel = (DefaultTableModel) routingTablePanel.getRootingTabel().getModel();
+        routingTableModel.setRowCount(0);
+
+        int i = 0;
+
+        for (RoutingTableItem route : manager.getRoutingTable().getRouteList()) {
+            data[0] = route.getType();
+            data[1] = route.getCidrRange();
+            data[2] = DataTypeHelper.ipAdressConvertor(route.getNetMask());
+            data[3] = DataTypeHelper.ipAdressConvertor(route.getGateway());
+            if (route.getType().equals("C")) {
+                data[4] = route.getPort().getPortName();
+            } else {
+                data[4] = DataTypeHelper.ipAdressConvertor(route.getPort().getIpAddress());
+            }
+            data[5] = route.getAdministrativeDistance();
+            routingTableModel.addRow(data);
+        }
+        routingTablePanel.getRootingTabel().setModel(routingTableModel);
     }
 
     public void setPortDetails(PacketReceiver selectedPort, String ipAddress, String subnetMask) {

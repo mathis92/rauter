@@ -63,7 +63,7 @@ public class ArpTable implements Runnable {
         }
     }
 
-    public ArpTableItem resolveArp(Packet packet) {
+    public ArpTableItem resolveArp(byte[] ipAddress, PacketReceiver port, Packet packet) {
         ArpTableItem item = null;
         for (ArpTableItem arpItem : arpTableList) {
             if (Arrays.equals(arpItem.getIpAddress(), packet.getFrame().getIpv4parser().getSourceIPbyte())) {

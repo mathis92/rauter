@@ -114,7 +114,12 @@
             <artifactId>jnetpcap</artifactId>
             <version>1.4.r1425-1d</version>
         </dependency>
-        
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.3</version>
+            <classifier>ftp</classifier>
+        </dependency>
     </dependencies>
     <name>router</name>
 </project>

@@ -45,7 +45,37 @@ public class DataTypeHelper {
         return result;
 
     }
+    public static int getDecimal(byte[] ipAddress) {
+        int b = 0;
+        b |= (int) (ipAddress[0] << 24) & 0xff000000;
+        b |= (int) (ipAddress[1] << 16) & 0x00ff0000;
+        b |= (int) (ipAddress[2] << 8) & 0x0000ff00;
+        b |= (int) (ipAddress[3]) & 0x000000ff;
+        return b;
+    }
+    
+    public static int convertNetmaskToCIDR(byte[] netmask){
 
+        byte[] netmaskBytes = netmask;
+        int cidr = 0;
+        boolean zero = false;
+        for(byte b : netmaskBytes){
+            int mask = 0x80;
+
+            for(int i = 0; i < 8; i++){
+                int result = b & mask;
+                if(result == 0){
+                    zero = true;
+                }else if(zero){
+                    throw new IllegalArgumentException("Invalid netmask.");
+                } else {
+                    cidr++;
+                }
+                mask >>>= 1;
+            }
+        }
+        return cidr;
+    }
     public static Integer toInt(byte[] byteArray) {
         Integer result = 0;
 
@@ -54,8 +84,18 @@ public class DataTypeHelper {
 
         }
         return result;
-
     }
+
+    public static int signedIpToInt(byte[] ipAddress) {
+        int result = 0;
+        for (int i = 0; i < 4; i++) {
+
+            result = (result | (ipAddress[i] & 0xff)) << 8;
+            System.out.println(result);
+        }
+        return result;
+    }
+
     public final static short getUnsignedByteValue(byte b) {
         if (b < 0) {
             return (short) (b & 0xff);
@@ -63,7 +103,7 @@ public class DataTypeHelper {
             return b;
         }
     }
-    
+
     public final static int getUnsignedShortValue(short s) {
         if (s < 0) {
             return (s & 0xffff);
@@ -71,18 +111,27 @@ public class DataTypeHelper {
             return s;
         }
     }
+
     public final static int getUnsignedShortFromBytes(byte msb, byte lsb) {
         short targetShort = DataTypeHelper.getUnsignedByteValue(lsb);
         targetShort |= (msb << 8);
         return DataTypeHelper.getUnsignedShortValue(targetShort);
     }
-    
+
     public static String bToString(byte singleByte) {
         StringBuilder newString = new StringBuilder();
         newString.append(String.format("%02X", singleByte));
         return newString.toString();
     }
 
+    public static String packetToString(Packet pckt){
+        StringBuilder result = new StringBuilder(); 
+            for(byte bajt : pckt.getPacket().getByteArray(0, pckt.getPacket().getTotalSize())){
+                result.append(bToString(bajt));
+            }
+        return result.toString();
+    }
+    
     public static String macAdressConvertor(byte[] macAdressByteArray) {
         String macAdress = null;
         for (int i = 0; i < 6; i++) {
@@ -228,14 +277,14 @@ public class DataTypeHelper {
         return ipAddress.getAddress();
     }
 
-    public static byte[] broadcastMacAddr(){
+    public static byte[] broadcastMacAddr() {
         byte[] broadcast = new byte[6];
         for (int i = 0; i < 6; i++) {
             broadcast[i] = (byte) 0xff;
         }
         return broadcast;
     }
-    
+
     public final static byte[] ipAddressToByte(String addr) {
 
         // Convert the TCP/IP address string to an integer value

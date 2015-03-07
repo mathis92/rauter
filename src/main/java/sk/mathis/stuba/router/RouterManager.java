@@ -23,6 +23,7 @@ import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
 import sk.mathis.stuba.equip.PacketForwarder;
 import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.routingTable.RoutingTable;
 
 /**
  *
@@ -36,18 +37,17 @@ public class RouterManager {
     Queue<Packet> packetBuffer;
     Queue<Packet> arpPacketBuffer;
     ArpTable arpTable;
+    RoutingTable routingTable;
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RouterManager.class);
 
     public RouterManager() {
+
         availiablePorts = new ArrayList<>();
         receiverList = new ArrayList<>();
         packetBuffer = new ConcurrentLinkedQueue<>();
         arpPacketBuffer = new ConcurrentLinkedQueue<>();
-        arpTable = new ArpTable();
-        new Thread(arpTable).start();
-        Thread thread = new Thread(new ArpPacketForwarder(arpPacketBuffer, arpTable));
-        thread.start();
+
         try {
             DataTypeHelper.scanPortsFile();
             DataTypeHelper.scanProtocolFile();
@@ -60,6 +60,13 @@ public class RouterManager {
         } catch (IOException ex) {
             Logger.getLogger(RouterManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        arpTable = new ArpTable();
+        routingTable = new RoutingTable(this);
+        new Thread(arpTable).start();
+        new Thread(routingTable).start();
+
+        Thread thread = new Thread(new ArpPacketForwarder(arpPacketBuffer, arpTable));
+        thread.start();
     }
 
     public void findDevices() throws IOException {
@@ -86,7 +93,7 @@ public class RouterManager {
             for (PacketReceiver port : availiablePorts) {
                 port.startThread();
             }
-            packetForwarder = new PacketForwarder(packetBuffer, arpPacketBuffer, arpTable, availiablePorts);
+            packetForwarder = new PacketForwarder(packetBuffer, arpPacketBuffer, arpTable, availiablePorts, routingTable);
             new Thread(packetForwarder).start();
             System.out.println("zapol som RouterManager");
         }
@@ -100,6 +107,8 @@ public class RouterManager {
         return arpTable;
     }
 
-    
-   
+    public RoutingTable getRoutingTable() {
+        return routingTable;
+    }
+
 }

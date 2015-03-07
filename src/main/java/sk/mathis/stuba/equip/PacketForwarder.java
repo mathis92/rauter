@@ -18,6 +18,8 @@ import sk.mathis.stuba.analysers.Frame;
 import sk.mathis.stuba.arp.ArpTable;
 import sk.mathis.stuba.arp.ArpTableItem;
 import sk.mathis.stuba.exceptions.ArpException;
+import sk.mathis.stuba.routingTable.RoutingTable;
+import sk.mathis.stuba.routingTable.RoutingTableItem;
 
 /**
  *
@@ -30,14 +32,16 @@ public class PacketForwarder implements Runnable {
     private PacketSender sender;
     private Analyser analyser;
     ArpTable arpTable = null;
+    RoutingTable rootingTable = null;
     private List<PacketReceiver> receiverList;
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(PacketForwarder.class);
 
-    public PacketForwarder(Queue<Packet> buffer, Queue<Packet> arpBuffer, ArpTable arpTable, List<PacketReceiver> portList) {
+    public PacketForwarder(Queue<Packet> buffer, Queue<Packet> arpBuffer, ArpTable arpTable, List<PacketReceiver> portList, RoutingTable rootingTable) {
         this.buffer = buffer;
         this.arpBuffer = arpBuffer;
         this.analyser = new Analyser();
         this.arpTable = arpTable;
+        this.rootingTable = rootingTable;
 
     }
 
@@ -70,6 +74,8 @@ public class PacketForwarder implements Runnable {
                         }
                     }
                 }
+                RoutingTableItem route  = rootingTable.resolveRoute(pckt);
+                
             }
             try {
                 Thread.sleep(1);
