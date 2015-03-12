@@ -5,8 +5,29 @@
  */
 package sk.mathis.stuba.router;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonReader;
+import javax.json.JsonReaderFactory;
+import javax.json.JsonValue;
+import javax.json.JsonWriter;
+import javax.json.JsonWriterFactory;
+import javax.json.stream.JsonGenerator;
 import javax.swing.table.DefaultTableModel;
 import org.jnetpcap.PcapIf;
 import org.slf4j.Logger;
@@ -28,7 +49,8 @@ public class AppGUIController implements Runnable {
     Integer availablePortsCount = 0;
     ArpTablePanel arpTablePanel;
     PortManagementPanel portManagementPanel;
-    RootingTablePanel routingTablePanel;
+    RoutingTablePanel routingTablePanel;
+    StaticRoutesPanel staticRoutesPanel;
     private static final Logger logger = LoggerFactory.getLogger(AppGUIController.class);
 
     public AppGUIController(AppGUI gui) throws IOException {
@@ -45,7 +67,7 @@ public class AppGUIController implements Runnable {
 
             fillArpTable();
             fillPortTable();
-            fillRootingTable();
+            fillRoutingTable();
 
             try {
                 Thread.sleep(500);
@@ -62,10 +84,14 @@ public class AppGUIController implements Runnable {
         portManagementPanel = new PortManagementPanel(this);
         gui.getMainTabPane().add(portManagementPanel).setName("PortManagement");
         gui.getMainTabPane().setTitleAt(1, "PortManagement");
-        routingTablePanel = new RootingTablePanel(manager);
-        gui.getMainTabPane().add(routingTablePanel).setName("RootingTable");
-        gui.getMainTabPane().setTitleAt(2, "RootingTable");
+        routingTablePanel = new RoutingTablePanel(manager);
+        gui.getMainTabPane().add(routingTablePanel).setName("RoutingTable");
+        gui.getMainTabPane().setTitleAt(2, "RoutingTable");
+        staticRoutesPanel = new StaticRoutesPanel(manager);
+        gui.getMainTabPane().add(staticRoutesPanel).setName("StaticRoutesPanel");
+        gui.getMainTabPane().setTitleAt(3, "StaticRoutesPanel");
         fillPortManagementPanel();
+        manager.getRoutingTable().addRoutesFromConfig();
     }
 
     public void fillPortManagementPanel() {
@@ -74,6 +100,15 @@ public class AppGUIController implements Runnable {
             if (port.getIpAddress() == null) {
                 portManagementPanel.getPortComboBox().addItem(port);
             }
+        }
+        try {
+            JsonArray ja = readIpAddressConfig();
+            for (JsonValue jv : ja) {
+                System.out.println(((JsonObject) jv).get("portName"));
+                this.setPortDetails(((JsonObject) jv).getString("portName"), ((JsonObject) jv).getString("ipAddress"), ((JsonObject) jv).getString("netMask"), false);
+            }
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AppGUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -115,7 +150,7 @@ public class AppGUIController implements Runnable {
         arpTablePanel.getArpTable().setModel(arpTableModel);
     }
 
-    public void fillRootingTable() {
+    public void fillRoutingTable() {
         Object[] data = new Object[6];
         DefaultTableModel routingTableModel;
         routingTableModel = (DefaultTableModel) routingTablePanel.getRootingTabel().getModel();
@@ -133,20 +168,123 @@ public class AppGUIController implements Runnable {
             } else {
                 data[4] = DataTypeHelper.ipAdressConvertor(route.getPort().getIpAddress());
             }
-            data[5] = route.getAdministrativeDistance();
+            data[5] = route.getAdministrativeDistance()+"/"+route.getMetric();
             routingTableModel.addRow(data);
         }
         routingTablePanel.getRootingTabel().setModel(routingTableModel);
     }
 
-    public void setPortDetails(PacketReceiver selectedPort, String ipAddress, String subnetMask) {
+    public void setPortDetails(String portName, String ipAddress, String subnetMask, Boolean fromGUI) {
         for (PacketReceiver port : manager.getAvailiablePorts()) {
-            if (port.getPortName().equals(selectedPort.getPortName())) {
+            if (port.getPortName().equals(portName)) {
                 port.setPortDetails(DataTypeHelper.ipAddressToByte(ipAddress), DataTypeHelper.ipAddressToByte(subnetMask));
+                if (fromGUI) {
+                    this.addPortDetailsToConfig(portName, ipAddress, subnetMask);
+                }
             }
         }
     }
 
+    public JsonArray readIpAddressConfig() throws FileNotFoundException {
+        JsonReaderFactory jrf = Json.createReaderFactory(null);
+
+        FileInputStream fis = new FileInputStream(new File("F:/Router/configIP.txt"));
+
+        try (JsonReader jr = jrf.createReader(fis, Charset.defaultCharset())) {
+            JsonObject jo = jr.readObject();
+            JsonArray ja = jo.getJsonArray("ipAddress");
+            return ja;
+        }
+    }
+ 
+    public void removeExtension(Object meno) {
+        FileOutputStream fos = null;
+        logger.debug("idem vymazavat meno " + meno);
+        try {
+            JsonObjectBuilder extObject = Json.createObjectBuilder();
+            JsonArrayBuilder arrObject = Json.createArrayBuilder();
+            JsonArray ja = readIpAddressConfig();
+
+            fos = new FileOutputStream("/Users/martinhudec/Desktop/users.txt");
+            Map<String, Object> jwfConfig = new HashMap<>();
+            jwfConfig.put(JsonGenerator.PRETTY_PRINTING, true);
+            JsonWriterFactory jwf = Json.createWriterFactory(jwfConfig);
+            try (JsonWriter writer = jwf.createWriter(fos)) {
+                for (JsonValue jv : ja) {
+                    JsonObject jo = (JsonObject) jv;
+                    JsonObjectBuilder job = null;
+                    if (!jo.getString("extension").equals(meno)) {
+                        logger.debug("pridal som " + jo.getString("extension"));
+                        job = Json.createObjectBuilder();
+                        job.add("userName", jo.getString("userName"));
+                        job.add("password", jo.getString("password"));
+                        job.add("extension", jo.getString("extension"));
+
+                    }
+                    if (job != null) {
+                        arrObject.add(job);
+                    }
+                }
+
+                JsonObjectBuilder jo = Json.createObjectBuilder();
+                jo.add("users", arrObject);
+                writer.writeObject(jo.build());
+            }
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AppGUIController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fos.close();
+
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(AppGUIController.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void addPortDetailsToConfig(String portName, String ipAddress, String netMask) {
+
+        FileOutputStream fos;
+        try {
+            JsonObjectBuilder extObject = Json.createObjectBuilder();
+            JsonArrayBuilder arrObject = Json.createArrayBuilder();
+            JsonArray ja = readIpAddressConfig();
+
+            fos = new FileOutputStream("F:/Router/configIP.txt");
+
+            Map<String, Object> jwfConfig = new HashMap<>();
+            jwfConfig.put(JsonGenerator.PRETTY_PRINTING, true);
+            JsonWriterFactory jwf = Json.createWriterFactory(jwfConfig);
+            try (JsonWriter writer = jwf.createWriter(fos)) {
+                for (JsonValue jv : ja) {
+                    JsonObject jo = (JsonObject) jv;
+                    JsonObjectBuilder job = Json.createObjectBuilder();
+                    for (Map.Entry<String, JsonValue> entry : jo.entrySet()) {
+                        job.add(entry.getKey(), entry.getValue());
+                    }
+                    arrObject.add(job);
+                }
+
+                extObject.add("portName", portName);
+                extObject.add("ipAddress", ipAddress);
+                extObject.add("netMask", netMask);
+                arrObject.add(extObject);
+
+                JsonObjectBuilder jo = Json.createObjectBuilder();
+                jo.add("ipAddress", arrObject);
+                writer.writeObject(jo.build());
+            }
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AppGUIController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+       
+    
+    
+    
     public RouterManager getManager() {
         return manager;
     }

@@ -21,12 +21,13 @@ public class Packet {
     PacketReceiver port;
     Pcap pcap;
     Frame frame;
+    Analyser analyzer = new Analyser();
 
     public Packet(PcapPacket packet, PacketReceiver port, Pcap pcap) {
         this.packet = packet;
         this.port = port;
         this.pcap = pcap;
-        frame = new Analyser().analyzePacket(packet);
+        frame = analyzer.analyzePacket(packet);
     }
 
     public PacketReceiver getPort() {
@@ -47,6 +48,7 @@ public class Packet {
 
     public void setPcapPacket(PcapPacket packet) {
         this.packet = packet;
+        frame = analyzer.analyzePacket(packet);
     }
 
     public Frame getFrame() {

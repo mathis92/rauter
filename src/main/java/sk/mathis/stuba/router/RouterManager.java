@@ -5,6 +5,7 @@
  */
 package sk.mathis.stuba.router;
 
+import ak.mathis.stuba.rip.RipManager;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class RouterManager {
     PacketForwarder packetForwarder = null;
     Queue<Packet> packetBuffer;
     Queue<Packet> arpPacketBuffer;
+    Queue<Packet> ripPacketBuffer;
+    RipManager ripManager;
     ArpTable arpTable;
     RoutingTable routingTable;
 
@@ -47,7 +50,7 @@ public class RouterManager {
         receiverList = new ArrayList<>();
         packetBuffer = new ConcurrentLinkedQueue<>();
         arpPacketBuffer = new ConcurrentLinkedQueue<>();
-
+        ripPacketBuffer = new ConcurrentLinkedQueue<>();
         try {
             DataTypeHelper.scanPortsFile();
             DataTypeHelper.scanProtocolFile();
@@ -62,11 +65,11 @@ public class RouterManager {
         }
         arpTable = new ArpTable();
         routingTable = new RoutingTable(this);
+        ripManager = new RipManager(this);
         new Thread(arpTable).start();
+        new Thread(ripManager).start();
         new Thread(routingTable).start();
 
-        Thread thread = new Thread(new ArpPacketForwarder(arpPacketBuffer, arpTable));
-        thread.start();
     }
 
     public void findDevices() throws IOException {
@@ -81,7 +84,7 @@ public class RouterManager {
         int portNum = 0;
         for (PcapIf port : ports) {
             System.out.println(port.getName() + " " + DataTypeHelper.macAdressConvertor(port.getHardwareAddress()));
-            availiablePorts.add(new PacketReceiver(port, packetBuffer, arpPacketBuffer, "fastEthernet 0/" + portNum, arpTable));
+            availiablePorts.add(new PacketReceiver(port, packetBuffer, arpPacketBuffer, "fastEthernet 0/" + portNum, arpTable, ripPacketBuffer, ripManager));
             portNum++;
         }
     }
@@ -95,7 +98,10 @@ public class RouterManager {
             }
             packetForwarder = new PacketForwarder(packetBuffer, arpPacketBuffer, arpTable, availiablePorts, routingTable);
             new Thread(packetForwarder).start();
-            System.out.println("zapol som RouterManager");
+            Thread thread = new Thread(new ArpPacketForwarder(arpPacketBuffer, arpTable));
+            thread.start();
+            ripManager = new RipManager(this);
+            new Thread(ripManager).start();
         }
     }
 
@@ -105,6 +111,14 @@ public class RouterManager {
 
     public ArpTable getArpTable() {
         return arpTable;
+    }
+
+    public Queue<Packet> getRipPacketBuffer() {
+        return ripPacketBuffer;
+    }
+
+    public RipManager getRipManager() {
+        return ripManager;
     }
 
     public RoutingTable getRoutingTable() {

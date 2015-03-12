@@ -5,6 +5,7 @@
  */
 package sk.mathis.stuba.equip;
 
+import ak.mathis.stuba.rip.RipManager;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Queue;
@@ -26,7 +27,10 @@ public class PacketReceiver implements Runnable {
     private final StringBuilder errbuf = new StringBuilder();
     private final Queue<Packet> buffer;
     private final Queue<Packet> arpBuffer;
+    private final Queue<Packet> ripBuffer;
     private ArpTable arpTable;
+    private RipManager ripManager;
+
     private Pcap pcap;
     private Packet pckt;
     private Boolean run = true;
@@ -34,18 +38,20 @@ public class PacketReceiver implements Runnable {
 
     private String portName;
     private PcapIf port;
-    
+
     private byte[] ipAddress = null;
     private byte[] macAddress;
     private byte[] subnetMask;
     private PacketReceiver packetReceiver = this;
 
-    public PacketReceiver(PcapIf port, Queue<Packet> buffer, Queue<Packet> arpBuffer, String portName, ArpTable arpTable) {
+    public PacketReceiver(PcapIf port, Queue<Packet> buffer, Queue<Packet> arpBuffer, String portName, ArpTable arpTable, Queue<Packet> ripBuffer, RipManager ripManager) {
         this.port = port;
         this.buffer = buffer;
         this.pcap = null;
         this.arpBuffer = arpBuffer;
         this.arpTable = arpTable;
+        this.ripBuffer = ripBuffer;
+        this.ripManager = ripManager;
 
         try {
             macAddress = port.getHardwareAddress();
@@ -73,13 +79,27 @@ public class PacketReceiver implements Runnable {
 
                     pckt = new Packet(packet, packetReceiver, pcap);
                     if (pckt.getFrame().getIsArp()) {
-                        System.out.println(packet.getByte(12) + " - " + packet.getByte(13) + " - " + packet.getByte(21));
+                        System.out.println("ARP PACKETLA");
                         //    logger.info("arp destination ip" + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getArpParser().getDestinationIPbyte()) + " arp source  ip" + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getArpParser().getSourceIPbyte()) + " " + pckt.getFrame().getArpParser().getOperationType());
                         if (Arrays.equals(pckt.getPort().getIpAddress(), pckt.getFrame().getArpParser().getDestinationIPbyte())) {
                             arpBuffer.add(pckt);
                         }
-                    } else {
+                    } else if (pckt.getFrame().getIsIpv4() && pckt.getFrame().getIpv4parser().isIsUdp() && pckt.getFrame().getIpv4parser().getUdpParser().isIsRip()) {
+                        System.out.println("RIP PACKETLA");
 
+                        if (Arrays.equals(pckt.getFrame().getIpv4parser().getDestinationIPbyte(), DataTypeHelper.ipAddressToByteFromString("224.0.0.9"))) {
+                            if (pckt.getFrame().getIpv4parser().isIsUdp()) {
+                                if (pckt.getFrame().getIpv4parser().getUdpParser().isIsRip()) {
+                                    ripBuffer.add(pckt);
+                                }
+                            }
+                        }
+                    } else {
+                        if (pckt.getFrame().getIsIpv4()) {
+                            if (pckt.getFrame().getIpv4parser().getIsIcmp()) {
+                                System.out.println("ICMP PACKETLA");
+                            }
+                        }
                         buffer.add(pckt);
                     }
                 }
@@ -127,6 +147,14 @@ public class PacketReceiver implements Runnable {
         return port;
     }
 
+    public RipManager getRipManager() {
+        return ripManager;
+    }
+
+    public Queue<Packet> getRipBuffer() {
+        return ripBuffer;
+    }
+
     public byte[] getSubnetMask() {
         return subnetMask;
     }
@@ -140,8 +168,6 @@ public class PacketReceiver implements Runnable {
         this.subnetMask = subnetMask;
 
     }
-    
-    
 
     @Override
     public String toString() {

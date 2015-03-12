@@ -6,6 +6,7 @@
 package sk.mathis.stuba.analysers;
 
 import org.jnetpcap.packet.PcapPacket;
+import sk.mathis.stuba.equip.DataTypeHelper;
 
 /**
  *
@@ -15,10 +16,10 @@ public class UdpParser implements IAnalyser {
 
     private byte[] sourcePort;
     private byte[] destinationPort;
-    private boolean isUdp = false;
+    private boolean isRip = false;
     private PcapPacket packet;
     private Integer ihlSet;
-
+    private RipParser ripParser;
     public UdpParser(PcapPacket packet, Integer ihlSet) {
         this.ihlSet = ihlSet;
         this.packet = packet;
@@ -29,17 +30,25 @@ public class UdpParser implements IAnalyser {
     //  }
     @Override
     public void analyse() {
-        isUdp = true;
         sourcePort = packet.getByteArray(34 + ihlSet, 2);
         destinationPort = packet.getByteArray(36 + ihlSet, 2);
+        if(DataTypeHelper.toInt(destinationPort) == 520){
+            isRip = true;
+            ripParser = new RipParser(packet, ihlSet);
+        }
     }
 
     public byte[] getDestinationPort() {
         return destinationPort;
     }
 
-    public boolean isIsUdp() {
-        return isUdp;
+    public boolean isIsRip() {
+        return isRip;
+    }
+
+
+    public RipParser getRipParser() {
+        return ripParser;
     }
 
     public byte[] getSourcePort() {

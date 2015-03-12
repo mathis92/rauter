@@ -45,7 +45,7 @@ public class PortManagementPanel extends javax.swing.JPanel {
 
         portComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        portIpAddress.setText("192.168.56.");
+        portIpAddress.setText("192.168.100.201");
         portIpAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 portIpAddressActionPerformed(evt);
@@ -152,7 +152,7 @@ public class PortManagementPanel extends javax.swing.JPanel {
 
     private void addPortInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPortInfoActionPerformed
 
-          guiController.setPortDetails((PacketReceiver)portComboBox.getSelectedItem(), portIpAddress.getText(), subnettMask.getText());
+          guiController.setPortDetails(((PacketReceiver)portComboBox.getSelectedItem()).getPortName(), portIpAddress.getText(), subnettMask.getText(), true);
     }//GEN-LAST:event_addPortInfoActionPerformed
 
 

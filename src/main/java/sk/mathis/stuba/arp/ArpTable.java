@@ -31,7 +31,7 @@ public class ArpTable implements Runnable {
     }
 
     public void addOrUpdateItem(ArpTableItem item) {
-  //      System.out.println("volam add or update item ");
+        //      System.out.println("volam add or update item ");
         boolean contains = false;
         ArpTableItem atItem = null;
 
@@ -63,24 +63,29 @@ public class ArpTable implements Runnable {
         }
     }
 
-    public ArpTableItem resolveArp(byte[] ipAddress, PacketReceiver port, Packet packet) {
+    public ArpTableItem resolveArp(PacketReceiver port, byte[] ipAddress) {
         ArpTableItem item = null;
         for (ArpTableItem arpItem : arpTableList) {
-            if (Arrays.equals(arpItem.getIpAddress(), packet.getFrame().getIpv4parser().getSourceIPbyte())) {
+            System.out.println(DataTypeHelper.ipAdressConvertor(arpItem.getIpAddress()));
+
+            if (Arrays.equals(arpItem.getIpAddress(), ipAddress)) {
                 item = arpItem;
             }
         }
-       // System.out.println("resolveArp " + item);
+        System.out.println("resolveArp " + item);
         if (item == null) {
-            ArpTableItem newArpTableItem = new ArpTableItem(packet.getPort(), packet.getFrame().getIpv4parser().getSourceIPbyte(), null);
+            ArpTableItem newArpTableItem = new ArpTableItem(port, ipAddress, null);
             arpTableList.add(newArpTableItem);
-            byte[] arpRequest = PacketGenerator.arpRequest(packet.getPort().getIpAddress(), packet.getFrame().getIpv4parser().getSourceIPbyte(), packet.getPort().getMacAddress(), DataTypeHelper.broadcastMacAddr());
-            packet.getPcap().sendPacket(arpRequest);
-        //    System.out.println("poslal som arpRequest a cakam ");
+            byte[] arpRequest = PacketGenerator.arpRequest(port.getIpAddress(), ipAddress, port.getMacAddress(), DataTypeHelper.broadcastMacAddr());
+            
+            port.getPcap().sendPacket(arpRequest);
+            System.out.println("posielam ARP REQUEST src ip " + DataTypeHelper.ipAdressConvertor(port.getIpAddress()) + " dst ip " + DataTypeHelper.ipAdressConvertor(ipAddress) + " src mac " + DataTypeHelper.macAdressConvertor(port.getMacAddress()));
             try {
                 synchronized (newArpTableItem.getArpRequestLock()) {
+                    
                     newArpTableItem.getArpRequestLock().wait(2000);
                     item = newArpTableItem;
+                    System.out.println("vratil sa arp Reply s mac addr " + DataTypeHelper.macAdressConvertor(newArpTableItem.getMacAddress()));
                 }
             } catch (InterruptedException ex) {
                 Logger.getLogger(ArpTable.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,9 +100,9 @@ public class ArpTable implements Runnable {
         for (Iterator<ArpTableItem> atItem = arpTableList.iterator(); atItem.hasNext();) {
             currentTime = new Date();
             ArpTableItem item = atItem.next();
-            if ((currentTime.getTime() - item.getTimeOfAdd().getTime()) > 20000) {
+            if ((currentTime.getTime() - item.getTimeOfAdd().getTime()) > 100000) {
                 atItem.remove();
-          //      System.out.println("ITEM REMOVED");
+                //      System.out.println("ITEM REMOVED");
                 // System.out.println("ipAddress " + DataTypeHelper.ipAdressConvertor(item.getIpAddress()) + " macAddress " + DataTypeHelper.macAdressConvertor(item.getMacAddress()) + " port " + item.getPort().getPortName() + " time " + (item.getTimeOfAdd().getTime() - new Date().getTime()));
             }
         }
@@ -115,6 +120,5 @@ public class ArpTable implements Runnable {
     public List<ArpTableItem> getArpTableList() {
         return arpTableList;
     }
-    
-    
+
 }

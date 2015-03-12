@@ -102,4 +102,18 @@ public class PacketGenerator {
 
         return packet;
     }
+    
+    public static Packet forwardPacket(Packet packet,byte[] sourceMac, byte[] destinationMac){
+        PcapPacket newPcapPacket = packet.getPacket();
+        
+        newPcapPacket.setByteArray(0, destinationMac);
+        newPcapPacket.setByteArray(6, sourceMac);
+        packet.setPcapPacket(newPcapPacket);
+        return packet;
+    }
+    /*
+public static ripResponse(Packet packet, byte[]){
+    
+}    
+    */
 }

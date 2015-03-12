@@ -126,8 +126,8 @@ public class DataTypeHelper {
 
     public static String packetToString(Packet pckt){
         StringBuilder result = new StringBuilder(); 
-            for(byte bajt : pckt.getPacket().getByteArray(0, pckt.getPacket().getTotalSize())){
-                result.append(bToString(bajt));
+            for(byte bajt : pckt.getPacket().getByteArray(0, pckt.getPacket().getCaptureHeader().caplen())){
+                result.append(" ").append(bToString(bajt));
             }
         return result.toString();
     }

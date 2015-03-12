@@ -11,13 +11,13 @@ import javax.swing.JTable;
  *
  * @author martinhudec
  */
-public class RootingTablePanel extends javax.swing.JPanel {
+public class RoutingTablePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ArpTablePanel
      */
     RouterManager manager; 
-    public RootingTablePanel(RouterManager manager) {
+    public RoutingTablePanel(RouterManager manager) {
         initComponents();
         this.manager = manager;
     }

@@ -38,7 +38,7 @@ public class Analyser {
                 }
             }
             if (frame.getIpv4parser().getUdpParser() != null) {
-                if (frame.getIpv4parser().getUdpParser().isIsUdp()) {
+                if (frame.getIpv4parser().isIsUdp()) {
                     frame.setProtocol("UDP");
                     String udpPort = DataTypeHelper.udpMap.get(DataTypeHelper.toInt(frame.getIpv4parser().getUdpParser().getDestinationPort()));
                     if (udpPort == null) {
