@@ -19,6 +19,8 @@ import sk.mathis.stuba.analysers.Frame;
 import sk.mathis.stuba.arp.ArpTable;
 import sk.mathis.stuba.arp.ArpTableItem;
 import sk.mathis.stuba.exceptions.ArpException;
+import sk.mathis.stuba.headers.IpV4Address;
+import sk.mathis.stuba.routingTable.RouteTypeEnum;
 import sk.mathis.stuba.routingTable.RoutingTable;
 import sk.mathis.stuba.routingTable.RoutingTableItem;
 
@@ -51,69 +53,90 @@ public class PacketForwarder implements Runnable {
         while (true) {
             while (!buffer.isEmpty()) {
                 Packet pckt = buffer.poll();
-                
-                if (Arrays.equals(pckt.getPort().getMacAddress(), pckt.getFrame().getSrcMacAddress())) {
+
+                if (Arrays.equals(pckt.getPort().getMacAddressByte(), pckt.getFrame().getSrcMacAddress())) {
                     break;
                 }
-                
+
                 if (pckt.getFrame().getIsIpv4()) {
-                    if (pckt.getFrame().getIpv4parser().getIsIcmp() && pckt.getFrame().getIpv4parser().getIcmpParser().getType() == 8 && pckt.getFrame().getIpv4parser().getIcmpParser().getCode() == 0) {
-                        System.out.println("MAM TU REQUEST ICMP from " + pckt.getPort().getPortName());
-                    } else if (pckt.getFrame().getIpv4parser().getIsIcmp() && pckt.getFrame().getIpv4parser().getIcmpParser().getType() == 0 && pckt.getFrame().getIpv4parser().getIcmpParser().getCode() == 0) {
-                        System.out.println("MAM TU REPLY ICMP from " + pckt.getPort().getPortName());
-                    }
-                    if (Arrays.equals(pckt.getPort().getIpAddress(), pckt.getFrame().getIpv4parser().getDestinationIPbyte())) {
+                   logger.debug("PACKET FORWARDER " + " paket z  " +  pckt.getSourceIp() + " paket na " + pckt.getDestinationIP() + " prijaty na interf " + pckt.getPort().getPortName());
+                    if (IpV4Address.compareIp(pckt.getPortIp(), pckt.getDestinationIP())) {
+                        logger.debug("packet pre PORT NA ROUTERI  " + pckt.getPort().getPortName() + " " +pckt.getPortIp().toString());
                         if (pckt.getFrame().getIpv4parser().getIsIcmp() && pckt.getFrame().getIpv4parser().getIcmpParser().getType() == 8 && pckt.getFrame().getIpv4parser().getIcmpParser().getCode() == 0) {
 
-                            ArpTableItem atItem = arpTable.resolveArp(pckt.getPort(), pckt.getFrame().getIpv4parser().getSourceIPbyte());
+                            RoutingTableItem route = routingTable.resolveRoute(pckt.getDestinationIP().getBytes());
+                            logger.debug("A--------------------------------------------->");
+                            if (route != null) {
+                                ArpTableItem arpTableItem;
+                                if (route.getType() == RouteTypeEnum.directlyConnectedRoute) {
+                                    logger.debug("B--------------------------------------------->");
+                                    arpTableItem = arpTable.resolveArp(route.getPort(), null, pckt.getSourceIp());
+                                } else {
+                                    logger.debug("C--------------------------------------------->");
+                                    RoutingTableItem routeDirect = routingTable.resolveRoute(route.getGatewayByte());
+                                    ArpTableItem arpTableItemDirect = arpTable.resolveArp(routeDirect.getPort(), route.getGateway(), null);//pckt.getDestinationIP());
+                                    arpTableItem = arpTableItemDirect;
+                                    route = routeDirect;
+                                }
 
-                            if (atItem != null) {
-                                byte[] resolvedMacAddress = atItem.getMacAddress();
-                                System.out.println("RESOLVED MAC ADDRESS " + DataTypeHelper.macAdressConvertor(resolvedMacAddress));
-                                Packet icmpReply = PacketGenerator.icmpReply(pckt, pckt.getPort().getIpAddress(), pckt.getFrame().getIpv4parser().getSourceIPbyte(), pckt.getPort().getMacAddress(), resolvedMacAddress);
-                                System.out.println("NEW ICMP REPLY TO " + DataTypeHelper.ipAdressConvertor(icmpReply.getFrame().getIpv4parser().getDestinationIPbyte()) + " from " + DataTypeHelper.ipAdressConvertor(icmpReply.getFrame().getIpv4parser().getSourceIPbyte()));
-                                System.out.println("NEW PACKET MACADDR TO " + DataTypeHelper.macAdressConvertor(icmpReply.getFrame().getDstMacAddress()) + " from " + DataTypeHelper.macAdressConvertor(icmpReply.getFrame().getSrcMacAddress()));
-                                System.out.println("GOING TO BE SENT ON " + icmpReply.getPort().getPortName());
+                                if (arpTableItem != null) {
+                                    logger.debug("D--------------------------------------------->");
+                                    byte[] resolvedMacAddress = arpTableItem.getMacAddressByte();
+                                    logger.debug("RESOLVED MAC ADDRESS " + DataTypeHelper.macAdressConvertor(resolvedMacAddress));
+                                    logger.debug("resolve arp pckt SOSURCE ip " + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getSourceIPbyte()));
+                                    Packet icmpReply = PacketGenerator.icmpReply(pckt, route.getPort().getIpAddressByte(), pckt.getFrame().getIpv4parser().getSourceIPbyte(), route.getPort().getMacAddressByte(), resolvedMacAddress);
+                                    logger.debug("NEW ICMP REPLY TO " + DataTypeHelper.ipAdressConvertor(icmpReply.getFrame().getIpv4parser().getDestinationIPbyte()) + " from " + DataTypeHelper.ipAdressConvertor(icmpReply.getFrame().getIpv4parser().getSourceIPbyte()));
+                                    logger.debug("NEW PACKET MACADDR TO " + DataTypeHelper.macAdressConvertor(icmpReply.getFrame().getDstMacAddress()) + " from " + DataTypeHelper.macAdressConvertor(icmpReply.getFrame().getSrcMacAddress()));
+                                    logger.debug("GOING TO BE SENT ON " + icmpReply.getPort().getPortName());
 
-                                icmpReply.getPcap().sendPacket(icmpReply.getPacket().getByteArray(0, icmpReply.getPacket().getCaptureHeader().caplen()));
+                                    icmpReply.getPcap().sendPacket(icmpReply.getPacket().getByteArray(0, icmpReply.getPacket().getCaptureHeader().caplen()));
 
-                            } else {
-                                try {
-                                    throw new ArpException("Arp not resolved");
-                                } catch (ArpException ex) {
-                                    Logger.getLogger(PacketForwarder.class.getName()).log(Level.SEVERE, null, ex);
+                                } else {
+                                    try {
+                                        throw new ArpException("Arp not resolved");
+                                    } catch (ArpException ex) {
+                                        Logger.getLogger(PacketForwarder.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 }
                             }
                         }
                     } else {
-                        if (pckt.getFrame().getIpv4parser().getIsIcmp() && pckt.getFrame().getIpv4parser().getIcmpParser().getType() == 8 && pckt.getFrame().getIpv4parser().getIcmpParser().getCode() == 0) {
-                            System.out.println("MAM TU REQUEST from " + pckt.getPort().getPortName());
-                        } else if (pckt.getFrame().getIpv4parser().getIsIcmp() && pckt.getFrame().getIpv4parser().getIcmpParser().getType() == 0 && pckt.getFrame().getIpv4parser().getIcmpParser().getCode() == 0) {
-                            System.out.println("MAM TU REPLY from " + pckt.getPort().getPortName());
-                        }
-
-                        System.out.println("\n ");
-                        System.out.println("RECEIVED PACKET ON " + pckt.getPort().getPortName() + " FROM " + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getSourceIPbyte()) + " to -> " + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getDestinationIPbyte()));
-                        System.out.println("FROM MAC ADDR " + DataTypeHelper.macAdressConvertor(pckt.getFrame().getSrcMacAddress()) + " to -> " + DataTypeHelper.macAdressConvertor(pckt.getFrame().getDstMacAddress()));
-
-                        RoutingTableItem route = routingTable.resolveRoute(pckt);
+                        logger.debug("E--------------------------------------------->");
+                        logger.debug("packet pre FORARDING  " + pckt.getPort().getPortName() + " " +pckt.getPortIp().toString());
+                        RoutingTableItem route = routingTable.resolveRoute(pckt.getFrame().getIpv4parser().getDestinationIPbyte());
                         if (route != null) {
-                            System.out.println("route " + route.getCidrRange());
-                            ArpTableItem arpTableItem = arpTable.resolveArp(route.getPort(), pckt.getFrame().getIpv4parser().getDestinationIPbyte());
-
+                            logger.debug("F--------------------------------------------->");
+                            ArpTableItem arpTableItem;
+                            if (route.getType() == RouteTypeEnum.directlyConnectedRoute) {
+                                logger.debug("G--------------------------------------------->");
+                                logger.debug("Directly connected zaznam z route tabulky " + route.getGateway().toString());
+                                logger.debug("odosielam dotaz na arp tabulku port " + route.getPort().getPortName() + " packetsrc " + pckt.getSourceIp().toString());
+                                arpTableItem = arpTable.resolveArp(route.getPort(), null, pckt.getDestinationIP());
+                            } else {
+                                logger.debug("H--------------------------------------------->");
+                                logger.debug("Druhy dotaz na route tabulku");
+                                RoutingTableItem routeDirect = routingTable.resolveRoute(route.getGatewayByte());
+                                logger.debug("odosielam dotaz na arp tabulku port " + routeDirect.getPort().getPortName() + " routeDirectGateway " + routeDirect.getGateway().toString() + " pcktsrc " + pckt.getSourceIp().toString());
+                                ArpTableItem arpTableItemDirect = arpTable.resolveArp(routeDirect.getPort(), route.getGateway(), null);// pckt.getDestinationIP());
+                                arpTableItem = arpTableItemDirect;
+                                route = routeDirect;
+                            }
                             // System.out.println("Resolved route to " + DataTypeHelper.ipAdressConvertor(route.getDestinationNetwork()) + " nextHop " + DataTypeHelper.ipAdressConvertor(route.getGateway()) + " port " + arpTableItem.getPort().getPortName() + " destination IP " + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getDestinationIPbyte()));
                             if (arpTableItem != null) {
-                                System.out.println("Returned ARP destination Mac addr " + DataTypeHelper.macAdressConvertor(arpTableItem.getMacAddress()));
-                                byte[] nextHopMacAddress = arpTableItem.getMacAddress();
+                                logger.debug("I--------------------------------------------->");
+                                if (arpTableItem.getMacAddress().getMacByte() != null) {
+                                    logger.debug("J--------------------------------------------->");
+                                    byte[] nextHopMacAddress = arpTableItem.getMacAddress().getMacByte();
+                                    logger.debug("route.getPort " + route.getPort().getMacAddress());
+                                    Packet forwardingPacket = PacketGenerator.forwardPacket(pckt, route.getPort().getMacAddressByte(), nextHopMacAddress);
+                                    logger.debug("To FORWARDER AS SOURCE" + DataTypeHelper.macAdressConvertor(route.getPort().getMacAddressByte()) + " AS DEST " + DataTypeHelper.macAdressConvertor(nextHopMacAddress));
+                                    logger.debug("NEW PACKET TO " + DataTypeHelper.ipAdressConvertor(forwardingPacket.getFrame().getIpv4parser().getDestinationIPbyte()) + " from " + DataTypeHelper.ipAdressConvertor(forwardingPacket.getFrame().getIpv4parser().getSourceIPbyte()));
+                                    logger.debug("NEW PACKET MACADDR TO " + DataTypeHelper.macAdressConvertor(forwardingPacket.getFrame().getDstMacAddress()) + " from " + DataTypeHelper.macAdressConvertor(forwardingPacket.getFrame().getSrcMacAddress()));
+                                    logger.debug("GOING TO BE SENT ON " + route.getPort().getPortName());
+                                    logger.debug(DataTypeHelper.packetToString(pckt));
 
-                                Packet forwardingPacket = PacketGenerator.forwardPacket(pckt, route.getPort().getMacAddress(), nextHopMacAddress);
-                                System.out.println("To FORWARDER AS SOURCE" + DataTypeHelper.macAdressConvertor(route.getPort().getMacAddress()) + " AS DEST " + DataTypeHelper.macAdressConvertor(nextHopMacAddress));
-                                System.out.println("NEW PACKET TO " + DataTypeHelper.ipAdressConvertor(forwardingPacket.getFrame().getIpv4parser().getDestinationIPbyte()) + " from " + DataTypeHelper.ipAdressConvertor(forwardingPacket.getFrame().getIpv4parser().getSourceIPbyte()));
-                                System.out.println("NEW PACKET MACADDR TO " + DataTypeHelper.macAdressConvertor(forwardingPacket.getFrame().getDstMacAddress()) + " from " + DataTypeHelper.macAdressConvertor(forwardingPacket.getFrame().getSrcMacAddress()));
-                                System.out.println("GOING TO BE SENT ON " + route.getPort().getPortName());
-                                System.out.println(DataTypeHelper.packetToString(pckt));
-
-                                route.getPort().getPcap().sendPacket(forwardingPacket.getPacket().getByteArray(0, forwardingPacket.getPacket().getCaptureHeader().caplen()));
+                                    route.getPort().getPcap().sendPacket(forwardingPacket.getPacket().getByteArray(0, forwardingPacket.getPacket().getCaptureHeader().caplen()));
+                                }
                             }
 
                         }

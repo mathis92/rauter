@@ -17,6 +17,8 @@ import org.jnetpcap.packet.PcapPacketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.arp.ArpTable;
+import sk.mathis.stuba.headers.IpV4Address;
+import sk.mathis.stuba.headers.MacAddress;
 
 /**
  *
@@ -75,15 +77,10 @@ public class PacketReceiver implements Runnable {
             public void nextPacket(PcapPacket packet, String user) {
 
                 if (packet != null) {
-                    //logger.debug("PacketReceiver Start");
-
                     pckt = new Packet(packet, packetReceiver, pcap);
                     if (pckt.getFrame().getIsArp()) {
                         System.out.println("ARP PACKETLA");
-                        //    logger.info("arp destination ip" + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getArpParser().getDestinationIPbyte()) + " arp source  ip" + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getArpParser().getSourceIPbyte()) + " " + pckt.getFrame().getArpParser().getOperationType());
-                        if (Arrays.equals(pckt.getPort().getIpAddress(), pckt.getFrame().getArpParser().getDestinationIPbyte())) {
-                            arpBuffer.add(pckt);
-                        }
+                        arpBuffer.add(pckt);
                     } else if (pckt.getFrame().getIsIpv4() && pckt.getFrame().getIpv4parser().isIsUdp() && pckt.getFrame().getIpv4parser().getUdpParser().isIsRip()) {
                         System.out.println("RIP PACKETLA");
 
@@ -108,7 +105,6 @@ public class PacketReceiver implements Runnable {
         };
 
         while (run) {
-            //   System.out.println("Papam Pakat");
             pcap.dispatch(1, jpacketHandler, null);
         }
     }
@@ -139,7 +135,7 @@ public class PacketReceiver implements Runnable {
         return portName;
     }
 
-    public byte[] getIpAddress() {
+    public byte[] getIpAddressByte() {
         return ipAddress;
     }
 
@@ -159,10 +155,16 @@ public class PacketReceiver implements Runnable {
         return subnetMask;
     }
 
-    public byte[] getMacAddress() {
+    public byte[] getMacAddressByte() {
         return macAddress;
     }
 
+    public MacAddress getMacAddress(){
+        return new MacAddress(macAddress);
+    }
+    public IpV4Address getIpAddress(){
+        return new IpV4Address(ipAddress);
+    }
     public void setPortDetails(byte[] ipAddress, byte[] subnetMask) {
         this.ipAddress = ipAddress;
         this.subnetMask = subnetMask;

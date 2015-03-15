@@ -37,29 +37,23 @@ public class ArpPacketForwarder implements Runnable {
 
     @Override
     public void run() {
-        //  logger.info("Zapol som arp packet Forwarder");
         while (true) {
             while (!arpBuffer.isEmpty()) {
                 Packet pckt = arpBuffer.poll();
-                if (Arrays.equals(pckt.getPort().getMacAddress(), pckt.getFrame().getSrcMacAddress())) {
+                if (Arrays.equals(pckt.getPort().getMacAddressByte(), pckt.getFrame().getSrcMacAddress())) {
                     break;
                 }
 
                 System.out.println("Dostal som ARP na " + pckt.getPort().getPortName() + " " + pckt.getFrame().getFrameType());
 
                 if (pckt.getFrame().getIsArp()) {
-                    //  logger.info("arp destination ip" + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getArpParser().getDestinationIPbyte()) + " arp source  ip" + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getArpParser().getSourceIPbyte()) + " " + pckt.getFrame().getArpParser().getOperationType());
                     if (pckt.getFrame().getArpParser().getOperationType().equalsIgnoreCase("arp-request")) {
-                        //         logger.info("dostal som request arp pre mna ");
-                        byte[] arpReply = PacketGenerator.arpReply(pckt.getPort().getIpAddress(), pckt.getFrame().getArpParser().getSourceIPbyte(), pckt.getPort().getMacAddress(), pckt.getFrame().getArpParser().getSourceMACbyte());
+                        System.out.println("ARP REQUEST NA " + pckt.getPort().getPortName());
+                        byte[] arpReply = PacketGenerator.arpReply(pckt.getPort().getIpAddressByte(), pckt.getFrame().getArpParser().getSourceIPbyte(), pckt.getPort().getMacAddressByte(), pckt.getFrame().getArpParser().getSourceMACbyte());
                         pckt.getPcap().sendPacket(arpReply);
-                        //System.out.println("ARP TABLE = " + arpTable);
-                        //arpTable.addOrUpdateItem(new ArpTableItem(pckt.getPort(), pckt.getFrame().getArpParser().getSourceIPbyte(), pckt.getFrame().getSrcMacAddress()));
-                        //arpTable.updateItemTime(pckt.getFrame().getArpParser().getSourceIPbyte(), pckt.getFrame().getSrcMacAddress(), pckt.getPort());
                     } else {
-                        // arpTable.
-                        logger.info("dostal som REPLY arp pre mna ");
-                        arpTable.addOrUpdateItem(new ArpTableItem(pckt.getPort(), pckt.getFrame().getArpParser().getSourceIPbyte(), pckt.getFrame().getSrcMacAddress()));
+                        logger.info("dostal som REPLY arp pre mna " + pckt.getArpSourceIP().toString() );
+                        arpTable.addOrUpdateItem(new ArpTableItem(pckt.getPort(), pckt.getArpSourceIP(), pckt.getFrame().getSrcMacAddress()));
                     }
                 }
             }

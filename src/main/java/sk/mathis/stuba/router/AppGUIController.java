@@ -35,6 +35,7 @@ import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.arp.ArpTableItem;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.routingTable.RouteTypeEnum;
 import sk.mathis.stuba.routingTable.RoutingTable;
 import sk.mathis.stuba.routingTable.RoutingTableItem;
 
@@ -97,7 +98,7 @@ public class AppGUIController implements Runnable {
     public void fillPortManagementPanel() {
         portManagementPanel.getPortComboBox().removeAllItems();
         for (PacketReceiver port : manager.getAvailiablePorts()) {
-            if (port.getIpAddress() == null) {
+            if (port.getIpAddressByte() == null) {
                 portManagementPanel.getPortComboBox().addItem(port);
             }
         }
@@ -121,8 +122,8 @@ public class AppGUIController implements Runnable {
         int i = 0;
         for (PacketReceiver port : manager.getAvailiablePorts()) {
             data[0] = port.getPortName();
-            data[1] = (port.getMacAddress() == null) ? "error" : DataTypeHelper.macAdressConvertor(port.getMacAddress());
-            data[2] = (port.getIpAddress() == null) ? "not set" : DataTypeHelper.ipAdressConvertor(port.getIpAddress());
+            data[1] = (port.getMacAddressByte() == null) ? "error" : DataTypeHelper.macAdressConvertor(port.getMacAddressByte());
+            data[2] = (port.getIpAddressByte() == null) ? "not set" : DataTypeHelper.ipAdressConvertor(port.getIpAddressByte());
 
             data[3] = "ZATIAL MFP";
             data[4] = (port.getSubnetMask() == null) ? "not set" : DataTypeHelper.ipAdressConvertor(port.getSubnetMask());
@@ -142,8 +143,8 @@ public class AppGUIController implements Runnable {
         int i = 0;
         for (ArpTableItem arpItem : manager.getArpTable().getArpTableList()) {
             data[0] = arpItem.getPort().getPortName();
-            data[1] = DataTypeHelper.ipAdressConvertor(arpItem.getIpAddress());
-            data[2] = (arpItem.getMacAddress() != null) ? DataTypeHelper.macAdressConvertor(arpItem.getMacAddress()) : "currently resolving";
+            data[1] = DataTypeHelper.ipAdressConvertor(arpItem.getIpAddressByte());
+            data[2] = (arpItem.getMacAddress().getMacByte() != null) ? arpItem.getMacAddress().toString() : "currently resolving";
             data[3] = arpItem.getTimeOfAdd();
             arpTableModel.addRow(data);
         }
@@ -151,7 +152,7 @@ public class AppGUIController implements Runnable {
     }
 
     public void fillRoutingTable() {
-        Object[] data = new Object[6];
+        Object[] data = new Object[5];
         DefaultTableModel routingTableModel;
         routingTableModel = (DefaultTableModel) routingTablePanel.getRootingTabel().getModel();
         routingTableModel.setRowCount(0);
@@ -162,13 +163,13 @@ public class AppGUIController implements Runnable {
             data[0] = route.getType();
             data[1] = route.getCidrRange();
             data[2] = DataTypeHelper.ipAdressConvertor(route.getNetMask());
-            data[3] = DataTypeHelper.ipAdressConvertor(route.getGateway());
-            if (route.getType().equals("C")) {
-                data[4] = route.getPort().getPortName();
+            //data[3] = route.getGateway().toString();
+            if (route.getType() == RouteTypeEnum.directlyConnectedRoute) {
+                data[3] = route.getPort().getPortName();
             } else {
-                data[4] = DataTypeHelper.ipAdressConvertor(route.getPort().getIpAddress());
+                data[3] = route.getGateway().toString();
             }
-            data[5] = route.getAdministrativeDistance()+"/"+route.getMetric();
+            data[4] = route.getAdministrativeDistance()+"/"+route.getMetric();
             routingTableModel.addRow(data);
         }
         routingTablePanel.getRootingTabel().setModel(routingTableModel);

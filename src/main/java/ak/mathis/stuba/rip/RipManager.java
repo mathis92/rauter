@@ -5,13 +5,20 @@
  */
 package ak.mathis.stuba.rip;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jnetpcap.packet.PcapPacket;
 import sk.mathis.stuba.analysers.RipItem;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
+import sk.mathis.stuba.equip.PacketGenerator;
+import sk.mathis.stuba.equip.PacketReceiver;
 import sk.mathis.stuba.router.RouterManager;
+import sk.mathis.stuba.routingTable.RouteTypeEnum;
 import sk.mathis.stuba.routingTable.RoutingTableItem;
 
 /**
@@ -21,6 +28,7 @@ import sk.mathis.stuba.routingTable.RoutingTableItem;
 public class RipManager implements Runnable {
 
     RouterManager manager;
+    Date updateInterval = null;
 
     public RipManager(RouterManager manager) {
         this.manager = manager;
@@ -32,6 +40,9 @@ public class RipManager implements Runnable {
         while (true) {
             while (!manager.getRipPacketBuffer().isEmpty()) {
                 Packet pckt = manager.getRipPacketBuffer().poll();
+                if (Arrays.equals(pckt.getPort().getMacAddressByte(), pckt.getFrame().getSrcMacAddress())) {
+                    break;
+                }
                 switch (DataTypeHelper.singleToInt(pckt.getFrame().getIpv4parser().getUdpParser().getRipParser().getCommand()[0])) {
                     case 2: {
                         for (RipItem ripItem : pckt.getFrame().getIpv4parser().getUdpParser().getRipParser().getRipItemsList()) {
@@ -39,12 +50,27 @@ public class RipManager implements Runnable {
                             if (Arrays.equals(ripItem.getNextHop(), DataTypeHelper.ipAddressToByteFromString("0.0.0.0"))) {
                                 nextHop = pckt.getFrame().getIpv4parser().getSourceIPbyte();
                             }
-                            manager.getRoutingTable().addRipRoute(ripItem.getIpv4Address(), ripItem.getSubnetMask(), nextHop, pckt.getPort(), DataTypeHelper.toInt(ripItem.getMetric()));
+                            manager.getRoutingTable().addRipRoute(ripItem.getIpv4Address(), ripItem.getSubnetMask(), nextHop, DataTypeHelper.toInt(ripItem.getMetric()));
                         }
+                        manager.getRoutingTable().orderRoutingTable();
                         break;
                     }
                 }
-
+            }
+            if (updateInterval == null || ((new Date().getTime() - updateInterval.getTime()) > 30000)) {
+                ArrayList<RoutingTableItem> ripPay = new ArrayList<>();
+                for (RoutingTableItem rtItem : manager.getRoutingTable().getRouteList()) {
+                    if (rtItem.getType() == RouteTypeEnum.ripRoute) {
+                        ripPay.add(rtItem);
+                    }
+                }
+                for (PacketReceiver port : manager.getAvailiablePorts()) {
+                    if (port.getIpAddressByte() != null) {
+                        byte[] ripResponse = PacketGenerator.ripResponse(port, ripPay);
+                        port.getPcap().sendPacket(ripResponse);
+                    }
+                }
+                updateInterval = new Date();
             }
             try {
                 Thread.sleep(1);

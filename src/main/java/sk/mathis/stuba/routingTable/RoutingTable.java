@@ -15,8 +15,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
@@ -45,11 +47,11 @@ import sk.mathis.stuba.router.RouterManager;
  */
 public class RoutingTable implements Runnable {
 
-    List<RoutingTableItem> routeList;
+    CopyOnWriteArrayList<RoutingTableItem> routeList;
     RouterManager manager;
 
     public RoutingTable(RouterManager manager) {
-        this.routeList = new ArrayList<>();
+        this.routeList = new CopyOnWriteArrayList<>();
         this.manager = manager;
         System.out.println("VYTVORENA ROUTING TABLE");
 
@@ -59,7 +61,7 @@ public class RoutingTable implements Runnable {
     public void run() {
         while (true) {
             fillDirectlyConnected();
-            orderRoutingTable();
+            //orderRoutingTable();
 
             try {
                 Thread.sleep(1000);
@@ -81,22 +83,17 @@ public class RoutingTable implements Runnable {
         }
     }
 
-    public void addRipRoute(byte[] network, byte[] subnetMask, byte[] nextHop, PacketReceiver ripOutPort, Integer metric) {
-        RoutingTableItem newRipRoute = new RoutingTableItem(network, subnetMask, nextHop, ripOutPort, 120, metric, "R");
+    public void addRipRoute(byte[] network, byte[] subnetMask, byte[] nextHop, Integer metric) {
+        RoutingTableItem newRipRoute = new RoutingTableItem(network, subnetMask, nextHop, 120, metric, RouteTypeEnum.ripRoute);
         if (!routeList.contains(newRipRoute)) {
             routeList.add(newRipRoute);
         }
     }
 
     public void addStaticRoute(String network, String subnetMask, String nextHop, Boolean fromGUI) {
-        PacketReceiver staticOutPort = null;
-        for (PacketReceiver port : manager.getAvailiablePorts()) {
-            if (Arrays.equals(resolveNetwork(port.getIpAddress(), port.getSubnetMask()), resolveNetwork(DataTypeHelper.ipAddressToByteFromString(nextHop), DataTypeHelper.ipAddressToByteFromString(subnetMask)))) {
-                staticOutPort = port;
-            }
-        }
+
         try {
-            RoutingTableItem newStaticRoute = new RoutingTableItem(DataTypeHelper.ipAddressToByteFromString(network), DataTypeHelper.ipAddressToByteFromString(subnetMask), DataTypeHelper.ipAddressToByteFromString(nextHop), staticOutPort, 1, "S");
+            RoutingTableItem newStaticRoute = new RoutingTableItem(DataTypeHelper.ipAddressToByteFromString(network), DataTypeHelper.ipAddressToByteFromString(subnetMask), DataTypeHelper.ipAddressToByteFromString(nextHop), 1, 0, RouteTypeEnum.staticRoute);
             routeList.add(newStaticRoute);
             if (fromGUI) {
                 addStaticRouteToConfig(network, subnetMask, nextHop);
@@ -108,6 +105,7 @@ public class RoutingTable implements Runnable {
                 Logger.getLogger(RoutingTable.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        orderRoutingTable();
     }
 
     public void fillDirectlyConnected() {
@@ -115,37 +113,43 @@ public class RoutingTable implements Runnable {
         for (PacketReceiver port : manager.getAvailiablePorts()) {
             int added = 0;
 
-            if (port.getIpAddress() != null) {
+            if (port.getIpAddressByte() != null) {
+
                 for (RoutingTableItem route : manager.getRoutingTable().getRouteList()) {
-                    if (port.getPortName().equals(route.getPort().getPortName())) {
-                        if (route.getType().equals("C")) {
+                    if (route.getType() == RouteTypeEnum.directlyConnectedRoute) {
+                        if (port.getPortName().equals(route.getPort().getPortName())) {
                             added = 1;
-                            route.updateRouteData(resolveNetwork(port.getIpAddress(), port.getSubnetMask()), port.getSubnetMask(), port.getIpAddress(), port, 0, "C");
+                            route.updateRouteData(resolveNetwork(port.getIpAddressByte(), port.getSubnetMask()), port.getSubnetMask(), port.getIpAddressByte(), port, 0, RouteTypeEnum.directlyConnectedRoute);
                         }
                     }
                 }
                 if (added == 0) {
-                    RoutingTableItem newDirectlyConnected = new RoutingTableItem(resolveNetwork(port.getIpAddress(), port.getSubnetMask()), port.getSubnetMask(), port.getIpAddress(), port, 1, "C");
+                    RoutingTableItem newDirectlyConnected = new RoutingTableItem(resolveNetwork(port.getIpAddressByte(), port.getSubnetMask()), port.getSubnetMask(), port.getIpAddressByte(), port, 0, RouteTypeEnum.directlyConnectedRoute);
                     routeList.add(newDirectlyConnected);
                 }
             }
         }
+        orderRoutingTable();
     }
 
     public byte[] resolveNetwork(byte[] ipAddress, byte[] subnetMask) {
+        // System.out.println("IP addr " + DataTypeHelper.ipAdressConvertor(ipAddress) + " MASK " + DataTypeHelper.ipAdressConvertor(subnetMask));
         byte[] network = new byte[4];
         for (int i = 0; i < 4; i++) {
-            byte tmp = (byte) (ipAddress[i] & (byte) subnetMask[i]);
-            network[i] = tmp;
+            network[i] = (byte) ((byte) ipAddress[i] & (byte) subnetMask[i]);
+
         }
+        // System.out.println("IP addr " + DataTypeHelper.ipAdressConvertor(network));
+
         return network;
+
     }
 
-    public RoutingTableItem resolveRoute(Packet pckt) {
+    public RoutingTableItem resolveRoute(byte[] destinationIP) {
         for (RoutingTableItem route : manager.getRoutingTable().getRouteList()) {
-            SubnetUtils utils = new SubnetUtils(route.getCidrRange());
-            boolean isInRange = utils.getInfo().isInRange(DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getDestinationIPbyte()));
-            if (isInRange) {
+            byte[] resolvedNetwork = resolveNetwork(destinationIP, route.getNetMask());
+            byte[] routeNetwork = route.getDestinationNetwork();
+            if (Arrays.equals(resolvedNetwork, routeNetwork)) {
                 return route;
             }
         }
@@ -207,24 +211,31 @@ public class RoutingTable implements Runnable {
 
     public void orderRoutingTable() {
 
-        Collections.sort(routeList, new Comparator<RoutingTableItem>() {
+        List<RoutingTableItem> tmpList = new ArrayList<>(routeList);
+
+        Collections.sort(tmpList, new Comparator<RoutingTableItem>() {
 
             @Override
             public int compare(RoutingTableItem o1, RoutingTableItem o2) {
                 Integer ad = o1.getAdministrativeDistance().compareTo(o2.getAdministrativeDistance());
                 //System.out.println("AD " + o1.getAdministrativeDistance() + " " + o2.getAdministrativeDistance() + " " + ad);
                 if (ad == 0) {
-                    Integer mask = ((Integer) DataTypeHelper.convertNetmaskToCIDR(o1.getNetMask())).compareTo((Integer) DataTypeHelper.convertNetmaskToCIDR(o2.getNetMask())) * -1;
+                    Integer prefix = DataTypeHelper.toInt(o1.getDestinationNetwork()).compareTo(DataTypeHelper.toInt(o2.getDestinationNetwork()));
                     //System.out.println("MASK " + ((Integer) DataTypeHelper.convertNetmaskToCIDR(o1.getNetMask())) + " " + ((Integer) DataTypeHelper.convertNetmaskToCIDR(o2.getNetMask())) + " " + mask);
-                    if (mask == 0) {
-                        Integer prefix = DataTypeHelper.toInt(o1.getDestinationNetwork()).compareTo(DataTypeHelper.toInt(o2.getDestinationNetwork()));
-                        return prefix;
+                    if (prefix == 0) {
+                        Integer mask = ((Integer) DataTypeHelper.convertNetmaskToCIDR(o1.getNetMask())).compareTo((Integer) DataTypeHelper.convertNetmaskToCIDR(o2.getNetMask())) * -1;
+                        if (mask == 0) {
+                            Integer metric = (o1.getMetric().compareTo(o2.getMetric()));
+                            return metric;
+                        }
+                        return mask;
                     }
-                    return mask;
+                    return prefix;
                 }
                 return ad;
             }
         });
-
+        routeList = new CopyOnWriteArrayList<>(tmpList);
     }
+
 }

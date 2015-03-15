@@ -1,15 +1,5 @@
 
 {
     "staticRoutes":[
-        {
-            "network":"192.168.200.0",
-            "subnetMask":"255.255.255.0",
-            "nextHop":"192.168.99.202"
-        },
-        {
-            "network":"0.0.0.0",
-            "subnetMask":"0.0.0.0",
-            "nextHop":"10.0.0.9"
-        }
     ]
 }

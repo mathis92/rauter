@@ -39,17 +39,17 @@ public class RoutingTablePanel extends javax.swing.JPanel {
 
         rootingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Type", "Destination", "Netmask", "Gateway", "Interface", "Cost"
+                "Type", "Destination", "Netmask", "Gateway", "Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -64,7 +64,6 @@ public class RoutingTablePanel extends javax.swing.JPanel {
             rootingTable.getColumnModel().getColumn(2).setResizable(false);
             rootingTable.getColumnModel().getColumn(3).setResizable(false);
             rootingTable.getColumnModel().getColumn(4).setResizable(false);
-            rootingTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         flushTableButton.setText("Flush TABLE");

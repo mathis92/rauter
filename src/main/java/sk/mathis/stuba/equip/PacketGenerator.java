@@ -7,7 +7,11 @@ package sk.mathis.stuba.equip;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import org.jnetpcap.packet.PcapPacket;
+import sk.mathis.stuba.headers.IpV4Address;
+import sk.mathis.stuba.headers.MacAddress;
+import sk.mathis.stuba.routingTable.RoutingTableItem;
 
 /**
  *
@@ -16,7 +20,7 @@ import org.jnetpcap.packet.PcapPacket;
 public class PacketGenerator {
 
     public static byte[] arpReply(byte[] sourceIP, byte[] destinationIP, byte[] sourceMAC, byte[] destinationMAC) {
-     //   System.out.println("GENERUJEM ARP REPLY");
+        //   System.out.println("GENERUJEM ARP REPLY");
         System.out.println(DataTypeHelper.macAdressConvertor(sourceMAC));
         System.out.println(DataTypeHelper.macAdressConvertor(destinationMAC));
         System.out.println(DataTypeHelper.ipAdressConvertor(sourceIP));
@@ -46,7 +50,7 @@ public class PacketGenerator {
     }
 
     public static byte[] arpRequest(byte[] sourceIP, byte[] destinationIP, byte[] sourceMAC, byte[] destinationMAC) {
-     //   System.out.println("GENERUJEM ARP REQUEST");
+        //   System.out.println("GENERUJEM ARP REQUEST");
         System.out.println(DataTypeHelper.macAdressConvertor(sourceMAC));
         System.out.println(DataTypeHelper.macAdressConvertor(destinationMAC));
         System.out.println(DataTypeHelper.ipAdressConvertor(sourceIP));
@@ -77,11 +81,14 @@ public class PacketGenerator {
 
     public static Packet icmpReply(Packet packet, byte[] sourceIP, byte[] destinationIP, byte[] sourceMAC, byte[] destinationMAC) {
         // Packet icmpReply = null;
-    //    System.out.println("GENERUJEM ICMP REPLY");
+        //    System.out.println("GENERUJEM ICMP REPLY");
 
         PcapPacket icmpReply = packet.getPacket();
         icmpReply.setByteArray(0, destinationMAC);
         icmpReply.setByteArray(6, sourceMAC);
+        Integer ttl = DataTypeHelper.singleToInt(icmpReply.getByte(22));
+
+        icmpReply.setByteArray(22, DataTypeHelper.longToBytes(ttl - 1));
         icmpReply.setByteArray(24, new byte[]{(byte) 0x00, (byte) 0x00});
         icmpReply.setByteArray(26, sourceIP);
         icmpReply.setByteArray(30, destinationIP);
@@ -102,18 +109,64 @@ public class PacketGenerator {
 
         return packet;
     }
-    
-    public static Packet forwardPacket(Packet packet,byte[] sourceMac, byte[] destinationMac){
+
+    public static Packet forwardPacket(Packet packet, byte[] sourceMac, byte[] destinationMac) {
         PcapPacket newPcapPacket = packet.getPacket();
-        
+
         newPcapPacket.setByteArray(0, destinationMac);
         newPcapPacket.setByteArray(6, sourceMac);
+        Integer ttl = DataTypeHelper.singleToInt(newPcapPacket.getByte(22));
+
+        newPcapPacket.setByteArray(22, DataTypeHelper.longToBytes(ttl - 1));
         packet.setPcapPacket(newPcapPacket);
         return packet;
     }
-    /*
-public static ripResponse(Packet packet, byte[]){
-    
-}    
-    */
+
+    public static byte[] ripResponse(PacketReceiver port, ArrayList<RoutingTableItem> payload) {
+        ByteArrayOutputStream ripResponse = new ByteArrayOutputStream(14 + 20 + 8 + 4 + (payload.size() * 20));
+        ByteArrayOutputStream ethernet = new ByteArrayOutputStream(14);
+        ByteArrayOutputStream ipv4 = new ByteArrayOutputStream(20);
+        ByteArrayOutputStream udp = new ByteArrayOutputStream(8);
+        ByteArrayOutputStream rip = new ByteArrayOutputStream(4 + payload.size() * 20);
+
+        ethernet.write(new byte[]{0x01, 0x00, 0x5e, 0x00, 0x00, 0x09}, 0, 6);
+        ethernet.write(port.getMacAddressByte(), 0, 6);
+        ethernet.write(new byte[]{0x08, 0x00}, 0, 2);
+        ipv4.write(new byte[]{0x45}, 0, 1);
+        ipv4.write(new byte[]{(byte) 0xC0}, 0, 1);
+        ipv4.write(DataTypeHelper.getUnsignedShort(20 + 4 + 8 + payload.size() * 20), 0, 2);
+        ipv4.write(new byte[]{0x00, 0x00}, 0, 2);
+        ipv4.write(new byte[]{0x00, 0x00}, 0, 2);
+        ipv4.write(new byte[]{0x02}, 0, 1);
+        ipv4.write(new byte[]{0x11}, 0, 1);
+        ipv4.write(new byte[]{0x00, 0x00}, 0, 2);
+        ipv4.write(port.getIpAddressByte(), 0, 4);
+        ipv4.write(new IpV4Address("224.0.0.9").getBytes(), 0, 4);
+        byte[] ipv4CheckSum = DataTypeHelper.getUnsignedShort((int) DataTypeHelper.RFC1071Checksum(ipv4.toByteArray(), 20));
+        byte[] ipv4ByteArray = ipv4.toByteArray();
+        ipv4ByteArray[10] = ipv4CheckSum[0];
+        ipv4ByteArray[11] = ipv4CheckSum[1];
+        udp.write(new byte[]{0x02, 0x08}, 0, 2);
+        udp.write(new byte[]{0x02, 0x08}, 0, 2);
+        udp.write(DataTypeHelper.getUnsignedShort(payload.size() * 20 + 4 + 8), 0, 2);
+        udp.write(new byte[]{0x00, 0x00}, 0, 2);
+        rip.write(new byte[]{0x02}, 0, 1);
+        rip.write(new byte[]{0x02}, 0, 1);
+        rip.write(new byte[]{0x00, 0x00}, 0, 2);
+        for (RoutingTableItem rtItem : payload) {
+            rip.write(new byte[]{0x00, 0x02}, 0, 2);
+            rip.write(new byte[]{0x00, 0x00}, 0, 2);
+            rip.write(rtItem.getDestinationNetwork(), 0, 4);
+            rip.write(rtItem.getNetMask(), 0, 4);
+            rip.write(new IpV4Address("0.0.0.0").getBytes(), 0, 4);
+            rip.write(DataTypeHelper.getByteArrayFromInte(4, rtItem.getMetric()), 0, 4);
+        }
+        ripResponse.write(ethernet.toByteArray(),0,14);
+        ripResponse.write(ipv4ByteArray, 0, 20);
+        ripResponse.write(udp.toByteArray(), 0 , 8);
+        ripResponse.write(rip.toByteArray(),0,4 + payload.size()*20);
+        
+        return ripResponse.toByteArray();
+    }
+
 }

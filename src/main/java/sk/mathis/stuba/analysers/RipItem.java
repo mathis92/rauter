@@ -31,12 +31,12 @@ public class RipItem {
             
         }
         this.metric = metric;
-        System.out.println("AddressFamily " + DataTypeHelper.toInt(addressFamily));
-        System.out.println("routeTag " + DataTypeHelper.toInt(routeTag));
-        System.out.println("ipv4Address " + DataTypeHelper.ipAdressConvertor(ipv4Address));
-        System.out.println("subnetMask " + DataTypeHelper.ipAdressConvertor(subnetMask));
-        System.out.println("nextHop " + DataTypeHelper.ipAdressConvertor(nextHop));
-        System.out.println("metric " + DataTypeHelper.toInt(metric));
+       // System.out.println("AddressFamily " + DataTypeHelper.toInt(addressFamily));
+        //System.out.println("routeTag " + DataTypeHelper.toInt(routeTag));
+        //System.out.println("ipv4Address " + DataTypeHelper.ipAdressConvertor(ipv4Address));
+        //System.out.println("subnetMask " + DataTypeHelper.ipAdressConvertor(subnetMask));
+        //System.out.println("nextHop " + DataTypeHelper.ipAdressConvertor(nextHop));
+        //System.out.println("metric " + DataTypeHelper.toInt(metric));
 
     }
 

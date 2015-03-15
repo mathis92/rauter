@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.Objects;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.headers.IpV4Address;
+import sk.mathis.stuba.headers.MacAddress;
 
 /**
  *
@@ -23,18 +25,18 @@ public class ArpTableItem {
     private Date timeOfAdd;
     private final Object arpRequestLock = new Object();
 
-    public ArpTableItem(PacketReceiver port, byte[] ipAddress, byte[] macAddress) {
+    public ArpTableItem(PacketReceiver port, IpV4Address ipAddress, byte[] macAddress) {
         this.port = port;
-        this.ipAddress = ipAddress;
+        this.ipAddress = ipAddress.getBytes();
         this.macAddress = macAddress;
         timeOfAdd = new Date();
     }
 
-    public byte[] getIpAddress() {
+    public byte[] getIpAddressByte() {
         return ipAddress;
     }
 
-    public byte[] getMacAddress() {
+    public byte[] getMacAddressByte() {
         return macAddress;
     }
 
@@ -50,6 +52,14 @@ public class ArpTableItem {
         timeOfAdd = new Date();
     }
 
+    public IpV4Address getIpAddress() {
+        return new IpV4Address(ipAddress);
+    }
+
+    public MacAddress getMacAddress() {
+        return new MacAddress(macAddress);
+    }
+
     public Object getArpRequestLock() {
         return arpRequestLock;
     }
@@ -57,11 +67,11 @@ public class ArpTableItem {
     public void storeMacAddress(byte[] macAddress) {
         this.macAddress = macAddress;
         this.timeOfAdd = new Date();
-      //  System.out.println("zapisal som novu MAC adresu do mac tabulky " + DataTypeHelper.macAdressConvertor(macAddress));
+        //  System.out.println("zapisal som novu MAC adresu do mac tabulky " + DataTypeHelper.macAdressConvertor(MacAddress));
 
         synchronized (this.arpRequestLock) {
             this.arpRequestLock.notifyAll();
-        
+
         }
     }
 

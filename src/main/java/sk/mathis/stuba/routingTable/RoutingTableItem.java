@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.headers.IpV4Address;
 
 /**
  *
@@ -22,10 +23,10 @@ public class RoutingTableItem {
     byte[] gateway;
     PacketReceiver port;
     Integer administrativeDistance;
-    String type;
+    RouteTypeEnum type;
     Integer metric = 0;
 
-    public RoutingTableItem(byte[] destinationNetwork, byte[] netMask, byte[] gateway, PacketReceiver port, Integer administrativeDistance, String type) {
+    public RoutingTableItem(byte[] destinationNetwork, byte[] netMask, byte[] gateway, PacketReceiver port, Integer administrativeDistance, RouteTypeEnum type) {
         this.destinationNetwork = destinationNetwork;
         this.netMask = netMask;
         this.cidrRange = DataTypeHelper.ipAdressConvertor(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
@@ -36,16 +37,17 @@ public class RoutingTableItem {
 
     }
 
-    public RoutingTableItem(byte[] destinationNetwork, byte[] netMask, byte[] gateway, PacketReceiver port, Integer administrativeDistance, Integer metric, String type) {
+    public RoutingTableItem(byte[] destinationNetwork, byte[] netMask, byte[] gateway, Integer administrativeDistance, Integer metric, RouteTypeEnum type) {
         this.destinationNetwork = destinationNetwork;
         this.netMask = netMask;
-        this.cidrRange = DataTypeHelper.ipAdressConvertor(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
+        this.cidrRange = new IpV4Address(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
         this.gateway = gateway;
-        this.port = port;
+        this.port = null;
         this.administrativeDistance = administrativeDistance;
         this.type = type;
         this.metric = metric;
     }
+    
 
     public Integer getAdministrativeDistance() {
         return administrativeDistance;
@@ -55,8 +57,12 @@ public class RoutingTableItem {
         return destinationNetwork;
     }
 
-    public byte[] getGateway() {
+    public byte[] getGatewayByte() {
         return gateway;
+    }
+
+    public IpV4Address getGateway() {
+        return new IpV4Address(gateway);
     }
 
     public byte[] getNetMask() {
@@ -71,7 +77,7 @@ public class RoutingTableItem {
         return cidrRange;
     }
 
-    public String getType() {
+    public RouteTypeEnum getType() {
         return type;
     }
 
@@ -79,7 +85,7 @@ public class RoutingTableItem {
         return metric;
     }
 
-    public void updateRouteData(byte[] destinationNetwork, byte[] netMask, byte[] gateway, PacketReceiver port, Integer administrativeDistance, String type) {
+    public void updateRouteData(byte[] destinationNetwork, byte[] netMask, byte[] gateway, PacketReceiver port, Integer administrativeDistance, RouteTypeEnum type) {
         this.destinationNetwork = destinationNetwork;
         this.netMask = netMask;
         this.gateway = gateway;
@@ -88,8 +94,6 @@ public class RoutingTableItem {
         this.administrativeDistance = administrativeDistance;
         this.type = type;
     }
-
-
 
     @Override
     public int hashCode() {

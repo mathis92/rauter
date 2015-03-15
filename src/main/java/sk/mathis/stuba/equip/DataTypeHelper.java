@@ -25,6 +25,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sk.mathis.stuba.analysers.Analyser;
+import sk.mathis.stuba.headers.IpV4Address;
 
 /**
  *
@@ -81,7 +82,6 @@ public class DataTypeHelper {
 
         for (int i = 0; i < byteArray.length - 1; i++) {
             result = ((byteArray[i] & 0xff) << 8) | ((byteArray[i + 1] & 0xff));
-
         }
         return result;
     }
@@ -112,6 +112,8 @@ public class DataTypeHelper {
         }
     }
 
+
+    
     public final static int getUnsignedShortFromBytes(byte msb, byte lsb) {
         short targetShort = DataTypeHelper.getUnsignedByteValue(lsb);
         targetShort |= (msb << 8);
@@ -176,7 +178,10 @@ public class DataTypeHelper {
         return ipAdress;
 
     }
-
+public static byte[] getByteArrayFromInte(Integer length, Integer value){
+    byte[] bytes = ByteBuffer.allocate(length).putInt(value).array();
+    return bytes;
+}
     public static Integer getIhl(byte rByte) {
         Integer output = 0;
         output = DataTypeHelper.singleToInt(rByte);

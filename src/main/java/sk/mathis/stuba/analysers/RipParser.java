@@ -33,12 +33,12 @@ public class RipParser implements IAnalyser {
         System.out.println(ihlSet);
         command = pckt.getByteArray(42 + ihlSet, 1);
         version = pckt.getByteArray(43 + ihlSet, 1);
-        System.out.println("command " + DataTypeHelper.singleToInt(command[0]) + " version " + DataTypeHelper.singleToInt(version[0]));
+        //System.out.println("command " + DataTypeHelper.singleToInt(command[0]) + " version " + DataTypeHelper.singleToInt(version[0]));
 
-        System.out.println(pckt.getCaptureHeader().caplen());
+        //System.out.println(pckt.getCaptureHeader().caplen());
 
         for (int i = 46+ihlSet; i < pckt.getCaptureHeader().caplen(); i = i + 20) {
-            System.out.println(i);
+           // System.out.println(i);
             RipItem ripRoute = new RipItem(pckt.getByteArray(i, 2), pckt.getByteArray(i+2, 2), pckt.getByteArray(i+4, 4), pckt.getByteArray(i+8, 4), pckt.getByteArray(i+12, 4), pckt.getByteArray(i+16, 4));
             ripItemsList.add(ripRoute);
         }
