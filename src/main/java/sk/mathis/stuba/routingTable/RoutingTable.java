@@ -148,7 +148,7 @@ public class RoutingTable implements Runnable {
     public RoutingTableItem resolveRoute(byte[] destinationIP) {
         for (RoutingTableItem route : manager.getRoutingTable().getRouteList()) {
             byte[] resolvedNetwork = resolveNetwork(destinationIP, route.getNetMask());
-            byte[] routeNetwork = route.getDestinationNetwork();
+            byte[] routeNetwork = route.getDestinationNetworkBytes();
             if (Arrays.equals(resolvedNetwork, routeNetwork)) {
                 return route;
             }
@@ -220,7 +220,7 @@ public class RoutingTable implements Runnable {
                 Integer ad = o1.getAdministrativeDistance().compareTo(o2.getAdministrativeDistance());
                 //System.out.println("AD " + o1.getAdministrativeDistance() + " " + o2.getAdministrativeDistance() + " " + ad);
                 if (ad == 0) {
-                    Integer prefix = DataTypeHelper.toInt(o1.getDestinationNetwork()).compareTo(DataTypeHelper.toInt(o2.getDestinationNetwork()));
+                    Integer prefix = DataTypeHelper.toInt(o1.getDestinationNetworkBytes()).compareTo(DataTypeHelper.toInt(o2.getDestinationNetworkBytes()));
                     //System.out.println("MASK " + ((Integer) DataTypeHelper.convertNetmaskToCIDR(o1.getNetMask())) + " " + ((Integer) DataTypeHelper.convertNetmaskToCIDR(o2.getNetMask())) + " " + mask);
                     if (prefix == 0) {
                         Integer mask = ((Integer) DataTypeHelper.convertNetmaskToCIDR(o1.getNetMask())).compareTo((Integer) DataTypeHelper.convertNetmaskToCIDR(o2.getNetMask())) * -1;

@@ -156,7 +156,7 @@ public class PacketGenerator {
         for (RoutingTableItem rtItem : payload) {
             rip.write(new byte[]{0x00, 0x02}, 0, 2);
             rip.write(new byte[]{0x00, 0x00}, 0, 2);
-            rip.write(rtItem.getDestinationNetwork(), 0, 4);
+            rip.write(rtItem.getDestinationNetworkBytes(), 0, 4);
             rip.write(rtItem.getNetMask(), 0, 4);
             rip.write(new IpV4Address("0.0.0.0").getBytes(), 0, 4);
             rip.write(DataTypeHelper.getByteArrayFromInte(4, rtItem.getMetric()), 0, 4);

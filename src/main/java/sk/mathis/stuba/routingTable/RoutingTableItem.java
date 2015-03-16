@@ -53,10 +53,13 @@ public class RoutingTableItem {
         return administrativeDistance;
     }
 
-    public byte[] getDestinationNetwork() {
+    public byte[] getDestinationNetworkBytes() {
         return destinationNetwork;
     }
 
+    public IpV4Address getDestinationNetwork(){
+        return new IpV4Address(destinationNetwork);
+    }
     public byte[] getGatewayByte() {
         return gateway;
     }

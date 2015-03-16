@@ -28,7 +28,7 @@ import sk.mathis.stuba.routingTable.RoutingTableItem;
 public class RipManager implements Runnable {
 
     RouterManager manager;
-    Date updateInterval = null;
+    Date updateTimer = null;
 
     public RipManager(RouterManager manager) {
         this.manager = manager;
@@ -57,7 +57,7 @@ public class RipManager implements Runnable {
                     }
                 }
             }
-            if (updateInterval == null || ((new Date().getTime() - updateInterval.getTime()) > 30000)) {
+            if (updateTimer == null || ((new Date().getTime() - updateTimer.getTime()) > 30000)) {
                 ArrayList<RoutingTableItem> ripPay = new ArrayList<>();
                 for (RoutingTableItem rtItem : manager.getRoutingTable().getRouteList()) {
                     if (rtItem.getType() == RouteTypeEnum.ripRoute) {
@@ -70,7 +70,7 @@ public class RipManager implements Runnable {
                         port.getPcap().sendPacket(ripResponse);
                     }
                 }
-                updateInterval = new Date();
+                updateTimer = new Date();
             }
             try {
                 Thread.sleep(1);

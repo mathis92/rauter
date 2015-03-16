@@ -59,14 +59,16 @@ public class PacketForwarder implements Runnable {
                 }
 
                 if (pckt.getFrame().getIsIpv4()) {
-                   logger.debug("PACKET FORWARDER " + " paket z  " +  pckt.getSourceIp() + " paket na " + pckt.getDestinationIP() + " prijaty na interf " + pckt.getPort().getPortName());
+                    logger.debug("PACKET FORWARDER " + " paket z  " + pckt.getSourceIp() + " paket na " + pckt.getDestinationIP() + " prijaty na interf " + pckt.getPort().getPortName());
                     if (IpV4Address.compareIp(pckt.getPortIp(), pckt.getDestinationIP())) {
-                        logger.debug("packet pre PORT NA ROUTERI  " + pckt.getPort().getPortName() + " " +pckt.getPortIp().toString());
+                        logger.debug("packet pre PORT NA ROUTERI  " + pckt.getPort().getPortName() + " " + pckt.getPortIp().toString());
                         if (pckt.getFrame().getIpv4parser().getIsIcmp() && pckt.getFrame().getIpv4parser().getIcmpParser().getType() == 8 && pckt.getFrame().getIpv4parser().getIcmpParser().getCode() == 0) {
 
                             RoutingTableItem route = routingTable.resolveRoute(pckt.getDestinationIP().getBytes());
+//SPRAVIT TOTO ZE TU MA BYT SRC IP ABY SA DALI PINGAT AJ INE PORTY 
                             logger.debug("A--------------------------------------------->");
                             if (route != null) {
+                                logger.debug("route destination network" + route.getDestinationNetwork());
                                 ArpTableItem arpTableItem;
                                 if (route.getType() == RouteTypeEnum.directlyConnectedRoute) {
                                     logger.debug("B--------------------------------------------->");
@@ -102,8 +104,8 @@ public class PacketForwarder implements Runnable {
                         }
                     } else {
                         logger.debug("E--------------------------------------------->");
-                        logger.debug("packet pre FORARDING  " + pckt.getPort().getPortName() + " " +pckt.getPortIp().toString());
-                        RoutingTableItem route = routingTable.resolveRoute(pckt.getFrame().getIpv4parser().getDestinationIPbyte());
+                        logger.debug("packet pre FORARDING  " + pckt.getPort().getPortName() + " " + pckt.getPortIp().toString());
+                        RoutingTableItem route = routingTable.resolveRoute(pckt.getDestinationIP().getBytes());
                         if (route != null) {
                             logger.debug("F--------------------------------------------->");
                             ArpTableItem arpTableItem;
@@ -121,7 +123,7 @@ public class PacketForwarder implements Runnable {
                                 arpTableItem = arpTableItemDirect;
                                 route = routeDirect;
                             }
-                            // System.out.println("Resolved route to " + DataTypeHelper.ipAdressConvertor(route.getDestinationNetwork()) + " nextHop " + DataTypeHelper.ipAdressConvertor(route.getGateway()) + " port " + arpTableItem.getPort().getPortName() + " destination IP " + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getDestinationIPbyte()));
+                            // System.out.println("Resolved route to " + DataTypeHelper.ipAdressConvertor(route.getDestinationNetworkBytes()) + " nextHop " + DataTypeHelper.ipAdressConvertor(route.getGateway()) + " port " + arpTableItem.getPort().getPortName() + " destination IP " + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getDestinationIPbyte()));
                             if (arpTableItem != null) {
                                 logger.debug("I--------------------------------------------->");
                                 if (arpTableItem.getMacAddress().getMacByte() != null) {
