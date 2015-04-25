@@ -6,9 +6,10 @@
 package sk.mathis.stuba.routingTable;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Objects;
 import sk.mathis.stuba.equip.DataTypeHelper;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 import sk.mathis.stuba.headers.IpV4Address;
 
 /**
@@ -21,12 +22,17 @@ public class RoutingTableItem {
     byte[] netMask;
     String cidrRange;
     byte[] gateway;
-    PacketReceiver port;
+    Port port;
     Integer administrativeDistance;
     RouteTypeEnum type;
     Integer metric = 0;
+    RipStateEnum ripState;
+    Date holdDowntimer = null;
+    Date invalidTimer = null;
+    Date flushTimer = null;
+    Date updateTimer = null;
 
-    public RoutingTableItem(byte[] destinationNetwork, byte[] netMask, byte[] gateway, PacketReceiver port, Integer administrativeDistance, RouteTypeEnum type) {
+    public RoutingTableItem(byte[] destinationNetwork, byte[] netMask, byte[] gateway, Port port, Integer administrativeDistance, RouteTypeEnum type) {
         this.destinationNetwork = destinationNetwork;
         this.netMask = netMask;
         this.cidrRange = DataTypeHelper.ipAdressConvertor(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
@@ -46,8 +52,9 @@ public class RoutingTableItem {
         this.administrativeDistance = administrativeDistance;
         this.type = type;
         this.metric = metric;
+        startTimers();
+
     }
-    
 
     public Integer getAdministrativeDistance() {
         return administrativeDistance;
@@ -57,9 +64,10 @@ public class RoutingTableItem {
         return destinationNetwork;
     }
 
-    public IpV4Address getDestinationNetwork(){
+    public IpV4Address getDestinationNetwork() {
         return new IpV4Address(destinationNetwork);
     }
+
     public byte[] getGatewayByte() {
         return gateway;
     }
@@ -72,7 +80,7 @@ public class RoutingTableItem {
         return netMask;
     }
 
-    public PacketReceiver getPort() {
+    public Port getPort() {
         return port;
     }
 
@@ -88,7 +96,7 @@ public class RoutingTableItem {
         return metric;
     }
 
-    public void updateRouteData(byte[] destinationNetwork, byte[] netMask, byte[] gateway, PacketReceiver port, Integer administrativeDistance, RouteTypeEnum type) {
+    public void updateRouteData(byte[] destinationNetwork, byte[] netMask, byte[] gateway, Port port, Integer administrativeDistance, RouteTypeEnum type) {
         this.destinationNetwork = destinationNetwork;
         this.netMask = netMask;
         this.gateway = gateway;
@@ -96,6 +104,93 @@ public class RoutingTableItem {
         this.cidrRange = DataTypeHelper.ipAdressConvertor(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
         this.administrativeDistance = administrativeDistance;
         this.type = type;
+    }
+
+    public void updateRouteData(byte[] destinationNetwork, byte[] netMask, byte[] gateway, Integer administrativeDistance, Integer metric, RouteTypeEnum type) {
+        if (type == RouteTypeEnum.ripRoute) {
+            if (ripState != RipStateEnum.HOLDDOWN) {
+                this.destinationNetwork = destinationNetwork;
+                this.netMask = netMask;
+                this.gateway = gateway;
+                this.cidrRange = DataTypeHelper.ipAdressConvertor(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
+                this.administrativeDistance = administrativeDistance;
+                this.type = type;
+                this.metric = metric;
+                startTimers();
+            }
+            if (metric == 16) {
+                this.destinationNetwork = destinationNetwork;
+                this.netMask = netMask;
+                this.gateway = gateway;
+                this.cidrRange = DataTypeHelper.ipAdressConvertor(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
+                this.administrativeDistance = administrativeDistance;
+                this.type = type;
+                this.metric = metric;
+            }
+        } else {
+            this.destinationNetwork = destinationNetwork;
+            this.netMask = netMask;
+            this.gateway = gateway;
+            this.cidrRange = DataTypeHelper.ipAdressConvertor(destinationNetwork) + "/" + DataTypeHelper.convertNetmaskToCIDR(netMask);
+            this.administrativeDistance = administrativeDistance;
+            this.type = type;
+            this.metric = metric;
+        }
+
+    }
+
+    public void setState(RipStateEnum state) {
+        switch (state) {
+            case INVALID: {
+
+                this.ripState = state;
+                this.metric = 16;
+                break;
+            }
+            case HOLDDOWN: {
+
+                this.ripState = state;
+                break;
+            }
+            case UPDATE: {
+
+                this.ripState = state;
+                break;
+            }
+            case FLUSH: {
+
+                this.ripState = state;
+            }
+        }
+
+    }
+
+    public void startTimers() {
+        this.ripState = RipStateEnum.UPDATE;
+        invalidTimer = new Date();
+        holdDowntimer = new Date();
+        updateTimer = new Date();
+        flushTimer = new Date();
+    }
+
+    public Long getInvalidTimer() {
+        return new Date().getTime() - invalidTimer.getTime();
+    }
+
+    public Long getUpdateTimer() {
+        return new Date().getTime() - updateTimer.getTime();
+    }
+
+    public Long getHoldDownTimer() {
+        return new Date().getTime() - holdDowntimer.getTime();
+    }
+
+    public Long getFlushTimer() {
+        return new Date().getTime() - flushTimer.getTime();
+    }
+
+    public RipStateEnum getRipState() {
+        return ripState;
     }
 
     @Override

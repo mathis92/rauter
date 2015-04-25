@@ -40,9 +40,9 @@ public class ArpPacketForwarder implements Runnable {
         while (true) {
             while (!arpBuffer.isEmpty()) {
                 Packet pckt = arpBuffer.poll();
-                if (Arrays.equals(pckt.getPort().getMacAddressByte(), pckt.getFrame().getSrcMacAddress())) {
-                    break;
-                }
+               // if (Arrays.equals(pckt.getPort().getMacAddressByte(), pckt.getFrame().getSrcMacAddress())) {
+                //    break;
+                //}
 
                 System.out.println("Dostal som ARP na " + pckt.getPort().getPortName() + " " + pckt.getFrame().getFrameType());
 

@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 
 /**
  *

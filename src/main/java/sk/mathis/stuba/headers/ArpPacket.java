@@ -7,7 +7,7 @@ package sk.mathis.stuba.headers;
 
 import org.jnetpcap.packet.PcapPacket;
 import sk.mathis.stuba.equip.Packet;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ArpPacket {
     byte[] destinationMAC; 
     byte[] arpSourceIP; 
     byte[] arpDestinationIP; 
-    PacketReceiver receivedPort; 
+    Port receivedPort; 
     
     
     public ArpPacket(Packet packet) {

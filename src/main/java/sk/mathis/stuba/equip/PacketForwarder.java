@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jnetpcap.Pcap;
 import org.jnetpcap.packet.PcapPacket;
 import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.analysers.Analyser;
@@ -37,14 +38,15 @@ public class PacketForwarder implements Runnable {
     private Analyser analyser;
     ArpTable arpTable = null;
     RoutingTable routingTable = null;
-    private List<PacketReceiver> receiverList;
+    private List<Port> portList;
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(PacketForwarder.class);
 
-    public PacketForwarder(Queue<Packet> buffer, Queue<Packet> arpBuffer, ArpTable arpTable, List<PacketReceiver> portList, RoutingTable rootingTable) {
+    public PacketForwarder(Queue<Packet> buffer, Queue<Packet> arpBuffer, ArpTable arpTable, List<Port> portList, RoutingTable rootingTable) {
         this.buffer = buffer;
         this.analyser = new Analyser();
         this.arpTable = arpTable;
         this.routingTable = rootingTable;
+        this.portList = portList;
     }
 
     @Override
@@ -53,18 +55,29 @@ public class PacketForwarder implements Runnable {
         while (true) {
             while (!buffer.isEmpty()) {
                 Packet pckt = buffer.poll();
-
-                if (Arrays.equals(pckt.getPort().getMacAddressByte(), pckt.getFrame().getSrcMacAddress())) {
-                    break;
-                }
-
+                
+               // for(Port port : portList){
+                    
+                 // if(Arrays.equals(pckt.getSrcMac().getMacByte(), pckt.getPortMac().getMacByte())){
+                 //       break;
+                //  }
+                //}
+                
                 if (pckt.getFrame().getIsIpv4()) {
                     logger.debug("PACKET FORWARDER " + " paket z  " + pckt.getSourceIp() + " paket na " + pckt.getDestinationIP() + " prijaty na interf " + pckt.getPort().getPortName());
-                    if (IpV4Address.compareIp(pckt.getPortIp(), pckt.getDestinationIP())) {
-                        logger.debug("packet pre PORT NA ROUTERI  " + pckt.getPort().getPortName() + " " + pckt.getPortIp().toString());
+                    Port pingPort = null;
+                    for(Port port : portList){
+                        logger.debug("PORT NAME " + port.getPortName() + " IP " +port.getIpAddress());
+                       if (IpV4Address.compareIp(port.getIpAddress(), pckt.getDestinationIP())){
+                           pingPort = port;
+                       }
+                    }
+                    if (pingPort != null) {
+                        logger.debug("packet pre PORT NA ROUTERI  " + pingPort.getPortName() + " " + pingPort.getIpAddress());
                         if (pckt.getFrame().getIpv4parser().getIsIcmp() && pckt.getFrame().getIpv4parser().getIcmpParser().getType() == 8 && pckt.getFrame().getIpv4parser().getIcmpParser().getCode() == 0) {
 
-                            RoutingTableItem route = routingTable.resolveRoute(pckt.getDestinationIP().getBytes());
+                           // RoutingTableItem route = routingTable.resolveRoute(pckt.getDestinationIP().getBytes());
+                            RoutingTableItem route = routingTable.resolveRoute(pckt.getSourceIp().getBytes());
 //SPRAVIT TOTO ZE TU MA BYT SRC IP ABY SA DALI PINGAT AJ INE PORTY 
                             logger.debug("A--------------------------------------------->");
                             if (route != null) {
@@ -86,13 +99,13 @@ public class PacketForwarder implements Runnable {
                                     byte[] resolvedMacAddress = arpTableItem.getMacAddressByte();
                                     logger.debug("RESOLVED MAC ADDRESS " + DataTypeHelper.macAdressConvertor(resolvedMacAddress));
                                     logger.debug("resolve arp pckt SOSURCE ip " + DataTypeHelper.ipAdressConvertor(pckt.getFrame().getIpv4parser().getSourceIPbyte()));
-                                    Packet icmpReply = PacketGenerator.icmpReply(pckt, route.getPort().getIpAddressByte(), pckt.getFrame().getIpv4parser().getSourceIPbyte(), route.getPort().getMacAddressByte(), resolvedMacAddress);
+                                    Packet icmpReply = PacketGenerator.icmpReply(pckt, pingPort.getIpAddressByte(), pckt.getFrame().getIpv4parser().getSourceIPbyte(), route.getPort().getMacAddressByte(), resolvedMacAddress);
                                     logger.debug("NEW ICMP REPLY TO " + DataTypeHelper.ipAdressConvertor(icmpReply.getFrame().getIpv4parser().getDestinationIPbyte()) + " from " + DataTypeHelper.ipAdressConvertor(icmpReply.getFrame().getIpv4parser().getSourceIPbyte()));
                                     logger.debug("NEW PACKET MACADDR TO " + DataTypeHelper.macAdressConvertor(icmpReply.getFrame().getDstMacAddress()) + " from " + DataTypeHelper.macAdressConvertor(icmpReply.getFrame().getSrcMacAddress()));
                                     logger.debug("GOING TO BE SENT ON " + icmpReply.getPort().getPortName());
-
+                                    logger.debug("PACKET SIZE " + icmpReply.getPacket().getCaptureHeader().caplen());
                                     icmpReply.getPcap().sendPacket(icmpReply.getPacket().getByteArray(0, icmpReply.getPacket().getCaptureHeader().caplen()));
-
+                                    
                                 } else {
                                     try {
                                         throw new ArpException("Arp not resolved");
@@ -102,6 +115,7 @@ public class PacketForwarder implements Runnable {
                                 }
                             }
                         }
+                    
                     } else {
                         logger.debug("E--------------------------------------------->");
                         logger.debug("packet pre FORARDING  " + pckt.getPort().getPortName() + " " + pckt.getPortIp().toString());

@@ -46,6 +46,7 @@ public class DataTypeHelper {
         return result;
 
     }
+
     public static int getDecimal(byte[] ipAddress) {
         int b = 0;
         b |= (int) (ipAddress[0] << 24) & 0xff000000;
@@ -54,20 +55,20 @@ public class DataTypeHelper {
         b |= (int) (ipAddress[3]) & 0x000000ff;
         return b;
     }
-    
-    public static int convertNetmaskToCIDR(byte[] netmask){
+
+    public static int convertNetmaskToCIDR(byte[] netmask) {
 
         byte[] netmaskBytes = netmask;
         int cidr = 0;
         boolean zero = false;
-        for(byte b : netmaskBytes){
+        for (byte b : netmaskBytes) {
             int mask = 0x80;
 
-            for(int i = 0; i < 8; i++){
+            for (int i = 0; i < 8; i++) {
                 int result = b & mask;
-                if(result == 0){
+                if (result == 0) {
                     zero = true;
-                }else if(zero){
+                } else if (zero) {
                     throw new IllegalArgumentException("Invalid netmask.");
                 } else {
                     cidr++;
@@ -77,6 +78,7 @@ public class DataTypeHelper {
         }
         return cidr;
     }
+
     public static Integer toInt(byte[] byteArray) {
         Integer result = 0;
 
@@ -112,8 +114,6 @@ public class DataTypeHelper {
         }
     }
 
-
-    
     public final static int getUnsignedShortFromBytes(byte msb, byte lsb) {
         short targetShort = DataTypeHelper.getUnsignedByteValue(lsb);
         targetShort |= (msb << 8);
@@ -126,14 +126,14 @@ public class DataTypeHelper {
         return newString.toString();
     }
 
-    public static String packetToString(Packet pckt){
-        StringBuilder result = new StringBuilder(); 
-            for(byte bajt : pckt.getPacket().getByteArray(0, pckt.getPacket().getCaptureHeader().caplen())){
-                result.append(" ").append(bToString(bajt));
-            }
+    public static String packetToString(Packet pckt) {
+        StringBuilder result = new StringBuilder();
+        for (byte bajt : pckt.getPacket().getByteArray(0, pckt.getPacket().getCaptureHeader().caplen())) {
+            result.append(" ").append(bToString(bajt));
+        }
         return result.toString();
     }
-    
+
     public static String macAdressConvertor(byte[] macAdressByteArray) {
         String macAdress = null;
         for (int i = 0; i < 6; i++) {
@@ -178,10 +178,13 @@ public class DataTypeHelper {
         return ipAdress;
 
     }
-public static byte[] getByteArrayFromInte(Integer length, Integer value){
-    byte[] bytes = ByteBuffer.allocate(length).putInt(value).array();
-    return bytes;
-}
+
+    public static byte[] getByteArrayFromInteger(Integer length, Integer value) {
+        byte[] bytes = ByteBuffer.allocate(Integer.BYTES).putInt(value).array();
+        
+        return bytes;
+    }
+
     public static Integer getIhl(byte rByte) {
         Integer output = 0;
         output = DataTypeHelper.singleToInt(rByte);
@@ -290,6 +293,20 @@ public static byte[] getByteArrayFromInte(Integer length, Integer value){
         return broadcast;
     }
 
+    public static IpV4Address resolveNetwork(IpV4Address ipAddress, IpV4Address subnetMask) {
+        // System.out.println("IP addr " + DataTypeHelper.ipAdressConvertor(ipAddress) + " MASK " + DataTypeHelper.ipAdressConvertor(subnetMask));
+        byte[] network = new byte[4];
+        for (int i = 0; i < 4; i++) {
+            network[i] = (byte) ((byte) ipAddress.getBytes()[i] & (byte) subnetMask.getBytes()[i]);
+
+        }
+        // System.out.println("IP addr " + DataTypeHelper.ipAdressConvertor(network));
+
+        return new IpV4Address(network);
+
+    }
+    
+    
     public final static byte[] ipAddressToByte(String addr) {
 
         // Convert the TCP/IP address string to an integer value
@@ -355,7 +372,12 @@ public static byte[] getByteArrayFromInte(Integer length, Integer value){
         data[1] = (byte) (value & 0xffffffff);
         return data;
     }
-
+    public final static byte[] getSingleByteFromInt(Integer value){
+        byte[] data = new byte[1];
+        data[0] = (byte) (value & 0xffffffff);
+        return data;
+    }
+    
     public static byte[] longToBytes(long x) {
         ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
         buffer.putLong(x);

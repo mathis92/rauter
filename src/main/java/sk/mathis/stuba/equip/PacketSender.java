@@ -17,10 +17,10 @@ public class PacketSender {
 
     byte[] packetByteArray;
     
-    List<PacketReceiver> receivedList;
+    List<Port> receivedList;
     private Integer sent = 0;
 
-    public PacketSender( List<PacketReceiver> receivedList) {
+    public PacketSender( List<Port> receivedList) {
         
         this.receivedList = receivedList;
     }
@@ -32,7 +32,7 @@ public class PacketSender {
         // System.out.println(packet.getPacket().getCaptureHeader().caplen());
         this.packetByteArray = packet.getPacket().getByteArray(0, packet.getPacket().getCaptureHeader().caplen());
 
-        for (PacketReceiver packetReceiver : receivedList) {
+        for (Port packetReceiver : receivedList) {
 
             if (packetReceiver.getPcap().sendPacket(packetByteArray) != Pcap.OK) {
                 System.err.println(packet.getPcap().getErr());
@@ -41,7 +41,7 @@ public class PacketSender {
         }
 
         if (sent.equals(0)) {
-            for (PacketReceiver packetReceiver : receivedList) {
+            for (Port packetReceiver : receivedList) {
                 if (packetReceiver.getPcap() != null) {
                     if (packetReceiver.getPcap().sendPacket(packetByteArray) != Pcap.OK) {
                         System.err.println(packetReceiver.getPcap().getErr());
@@ -56,7 +56,7 @@ public class PacketSender {
         // System.out.println(packet.getPacket().getCaptureHeader().caplen());
         this.packetByteArray = packet;
 
-        for (PacketReceiver packetReceiver : receivedList) {
+        for (Port packetReceiver : receivedList) {
           //  if(packetReceiver.getPort().getPortName().equals(port.getPortName())){
             if (packetReceiver.getPcap().sendPacket(packetByteArray) != Pcap.OK) {
                 System.err.println("SE TO DO*EBAUO");
@@ -66,7 +66,7 @@ public class PacketSender {
         }
 
         if (sent.equals(0)) {
-            for (PacketReceiver packetReceiver : receivedList) {
+            for (Port packetReceiver : receivedList) {
                 if (packetReceiver.getPcap() != null) {
                     if (packetReceiver.getPcap().sendPacket(packetByteArray) != Pcap.OK) {
                         System.err.println(packetReceiver.getPcap().getErr());

@@ -12,11 +12,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jnetpcap.packet.PcapPacket;
+import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.analysers.RipItem;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
 import sk.mathis.stuba.equip.PacketGenerator;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
+import sk.mathis.stuba.headers.IpV4Address;
 import sk.mathis.stuba.router.RouterManager;
 import sk.mathis.stuba.routingTable.RouteTypeEnum;
 import sk.mathis.stuba.routingTable.RoutingTableItem;
@@ -28,50 +30,47 @@ import sk.mathis.stuba.routingTable.RoutingTableItem;
 public class RipManager implements Runnable {
 
     RouterManager manager;
-    Date updateTimer = null;
+    RipTable ripTable;
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RipManager.class);
 
     public RipManager(RouterManager manager) {
         this.manager = manager;
-
+        ripTable = new RipTable();
+        new Thread(ripTable).start();
+        new Thread(new RipTimeManager(manager, this)).start();
     }
 
     @Override
     public void run() {
+        logger.info("[RipManager] Thread start");
         while (true) {
             while (!manager.getRipPacketBuffer().isEmpty()) {
                 Packet pckt = manager.getRipPacketBuffer().poll();
-                if (Arrays.equals(pckt.getPort().getMacAddressByte(), pckt.getFrame().getSrcMacAddress())) {
-                    break;
+                if (ripTable.getRipNetworkList().isEmpty()) {
+                    logger.info("[RIP not configured]");
                 }
-                switch (DataTypeHelper.singleToInt(pckt.getFrame().getIpv4parser().getUdpParser().getRipParser().getCommand()[0])) {
-                    case 2: {
-                        for (RipItem ripItem : pckt.getFrame().getIpv4parser().getUdpParser().getRipParser().getRipItemsList()) {
-                            byte[] nextHop = ripItem.getNextHop();
-                            if (Arrays.equals(ripItem.getNextHop(), DataTypeHelper.ipAddressToByteFromString("0.0.0.0"))) {
-                                nextHop = pckt.getFrame().getIpv4parser().getSourceIPbyte();
+                for (RipTableItem rti : ripTable.getRipNetworkList()) {
+                    if (pckt.fitToNetwork(rti.getNetworkAddress(), rti.getNetMaskAddress())) {
+                        logger.info("[RIP FITS TO RIP NETWORKS] " + pckt.getSourceIp());
+                        switch (DataTypeHelper.singleToInt(pckt.getFrame().getIpv4parser().getUdpParser().getRipParser().getCommand()[0])) {
+                            case 2: {
+                                for (RipItem ripItem : pckt.getFrame().getIpv4parser().getUdpParser().getRipParser().getRipItemsList()) {
+                                    byte[] nextHop = ripItem.getNextHop();
+                                    if (Arrays.equals(ripItem.getNextHop(), DataTypeHelper.ipAddressToByteFromString("0.0.0.0"))) {
+                                        nextHop = pckt.getFrame().getIpv4parser().getSourceIPbyte();
+                                    }
+                                    manager.getRoutingTable().addRipRouteToTable(ripItem.getIpv4Address(), ripItem.getSubnetMask(), nextHop, DataTypeHelper.toInt(ripItem.getMetric()));
+                                }
+                                manager.getRoutingTable().orderRoutingTable();
+                                break;
                             }
-                            manager.getRoutingTable().addRipRoute(ripItem.getIpv4Address(), ripItem.getSubnetMask(), nextHop, DataTypeHelper.toInt(ripItem.getMetric()));
                         }
-                        manager.getRoutingTable().orderRoutingTable();
-                        break;
+                    } else {
+                        logger.info("[RIP DOES NOT FIT TO RIP NETWORKS] " + pckt.getSourceIp());
                     }
                 }
             }
-            if (updateTimer == null || ((new Date().getTime() - updateTimer.getTime()) > 30000)) {
-                ArrayList<RoutingTableItem> ripPay = new ArrayList<>();
-                for (RoutingTableItem rtItem : manager.getRoutingTable().getRouteList()) {
-                    if (rtItem.getType() == RouteTypeEnum.ripRoute) {
-                        ripPay.add(rtItem);
-                    }
-                }
-                for (PacketReceiver port : manager.getAvailiablePorts()) {
-                    if (port.getIpAddressByte() != null) {
-                        byte[] ripResponse = PacketGenerator.ripResponse(port, ripPay);
-                        port.getPcap().sendPacket(ripResponse);
-                    }
-                }
-                updateTimer = new Date();
-            }
+
             try {
                 Thread.sleep(1);
             } catch (InterruptedException ex) {
@@ -79,4 +78,21 @@ public class RipManager implements Runnable {
             }
         }
     }
+
+    public void addRipNetwork(String ip, String netMask) {
+        ripTable.addRipNetwork(new IpV4Address(ip), new IpV4Address(netMask));
+        logger.info("[ACTUAL RIP NETWORKS]:");
+        for (RipTableItem ripNetwork : ripTable.getRipNetworkList()) {
+            logger.info("[RIP network] " + ripNetwork.toString());
+        }
+    }
+
+    public void sendRipResponses() {
+
+    }
+
+    public RipTable getRipTable() {
+        return ripTable;
+    }
+
 }

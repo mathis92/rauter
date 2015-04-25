@@ -7,7 +7,7 @@ package sk.mathis.stuba.router;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 
 /**
  *
@@ -152,7 +152,7 @@ public class PortManagementPanel extends javax.swing.JPanel {
 
     private void addPortInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPortInfoActionPerformed
 
-          guiController.setPortDetails(((PacketReceiver)portComboBox.getSelectedItem()).getPortName(), portIpAddress.getText(), subnettMask.getText(), true);
+          guiController.setPortDetails(((Port)portComboBox.getSelectedItem()).getPortName(), portIpAddress.getText(), subnettMask.getText(), true);
     }//GEN-LAST:event_addPortInfoActionPerformed
 
 

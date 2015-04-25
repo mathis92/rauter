@@ -9,6 +9,7 @@ package sk.mathis.stuba.routingTable;
  *
  * @author martinhudec
  */
-public enum RouteTypeEnum {
-    ripRoute, staticRoute, directlyConnectedRoute
+public enum RipStateEnum {
+
+    UPDATE, INVALID, HOLDDOWN, FLUSH;
 }

@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 import sk.mathis.stuba.equip.DataTypeHelper;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 import sk.mathis.stuba.headers.IpV4Address;
 import sk.mathis.stuba.headers.MacAddress;
 
@@ -19,13 +19,13 @@ import sk.mathis.stuba.headers.MacAddress;
  */
 public class ArpTableItem {
 
-    private PacketReceiver port;
+    private Port port;
     private byte[] ipAddress;
     private byte[] macAddress;
     private Date timeOfAdd;
     private final Object arpRequestLock = new Object();
 
-    public ArpTableItem(PacketReceiver port, IpV4Address ipAddress, byte[] macAddress) {
+    public ArpTableItem(Port port, IpV4Address ipAddress, byte[] macAddress) {
         this.port = port;
         this.ipAddress = ipAddress.getBytes();
         this.macAddress = macAddress;
@@ -40,7 +40,7 @@ public class ArpTableItem {
         return macAddress;
     }
 
-    public PacketReceiver getPort() {
+    public Port getPort() {
         return port;
     }
 

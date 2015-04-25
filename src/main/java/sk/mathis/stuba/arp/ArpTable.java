@@ -17,7 +17,7 @@ import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
 import sk.mathis.stuba.equip.PacketForwarder;
 import sk.mathis.stuba.equip.PacketGenerator;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 import sk.mathis.stuba.headers.IpV4Address;
 
 /**
@@ -67,7 +67,7 @@ public class ArpTable implements Runnable {
         }
     }
 
-    public ArpTableItem resolveArp(PacketReceiver port, IpV4Address ipAddress, IpV4Address pcktIpAddress) {
+    public ArpTableItem resolveArp(Port port, IpV4Address ipAddress, IpV4Address pcktIpAddress) {
         logger.debug(port.getPortName() + " port IP " + port.getIpAddress().toString() + " portMAc " + port.getMacAddress().toString() + " ipv4Address " + ipAddress + " pckt src IP " + pcktIpAddress);
         ArpTableItem item = null;
         if (ipAddress == null) {

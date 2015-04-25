@@ -36,7 +36,7 @@ import org.apache.commons.net.util.SubnetUtils;
 import sk.mathis.stuba.arp.ArpTableItem;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 import sk.mathis.stuba.exceptions.PortNotFoundException;
 import sk.mathis.stuba.router.AppGUIController;
 import sk.mathis.stuba.router.RouterManager;
@@ -83,11 +83,19 @@ public class RoutingTable implements Runnable {
         }
     }
 
-    public void addRipRoute(byte[] network, byte[] subnetMask, byte[] nextHop, Integer metric) {
+    public void addRipRouteToTable(byte[] network, byte[] subnetMask, byte[] nextHop, Integer metric) {
         RoutingTableItem newRipRoute = new RoutingTableItem(network, subnetMask, nextHop, 120, metric, RouteTypeEnum.ripRoute);
+
         if (!routeList.contains(newRipRoute)) {
             routeList.add(newRipRoute);
+        } else {
+            for (RoutingTableItem item : routeList) {
+                if (item.equals(newRipRoute)) {
+                    item.updateRouteData(network, subnetMask, nextHop, 120, metric, RouteTypeEnum.ripRoute);
+                }
+            }
         }
+
     }
 
     public void addStaticRoute(String network, String subnetMask, String nextHop, Boolean fromGUI) {
@@ -110,7 +118,7 @@ public class RoutingTable implements Runnable {
 
     public void fillDirectlyConnected() {
 
-        for (PacketReceiver port : manager.getAvailiablePorts()) {
+        for (Port port : manager.getAvailiablePorts()) {
             int added = 0;
 
             if (port.getIpAddressByte() != null) {

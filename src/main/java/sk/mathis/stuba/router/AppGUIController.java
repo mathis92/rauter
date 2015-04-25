@@ -34,7 +34,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sk.mathis.stuba.arp.ArpTableItem;
 import sk.mathis.stuba.equip.DataTypeHelper;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 import sk.mathis.stuba.routingTable.RouteTypeEnum;
 import sk.mathis.stuba.routingTable.RoutingTable;
 import sk.mathis.stuba.routingTable.RoutingTableItem;
@@ -52,6 +52,7 @@ public class AppGUIController implements Runnable {
     PortManagementPanel portManagementPanel;
     RoutingTablePanel routingTablePanel;
     StaticRoutesPanel staticRoutesPanel;
+    Ripv2RoutesPanel ripv2RoutesPanel; 
     private static final Logger logger = LoggerFactory.getLogger(AppGUIController.class);
 
     public AppGUIController(AppGUI gui) throws IOException {
@@ -91,13 +92,16 @@ public class AppGUIController implements Runnable {
         staticRoutesPanel = new StaticRoutesPanel(manager);
         gui.getMainTabPane().add(staticRoutesPanel).setName("StaticRoutesPanel");
         gui.getMainTabPane().setTitleAt(3, "StaticRoutesPanel");
+        ripv2RoutesPanel = new Ripv2RoutesPanel(manager);
+        gui.getMainTabPane().add(ripv2RoutesPanel).setName("Ripv2RoutesPanel");
+        gui.getMainTabPane().setTitleAt(4, "Ripv2RoutesPanel");
         fillPortManagementPanel();
         manager.getRoutingTable().addRoutesFromConfig();
     }
 
     public void fillPortManagementPanel() {
         portManagementPanel.getPortComboBox().removeAllItems();
-        for (PacketReceiver port : manager.getAvailiablePorts()) {
+        for (Port port : manager.getAvailiablePorts()) {
             if (port.getIpAddressByte() == null) {
                 portManagementPanel.getPortComboBox().addItem(port);
             }
@@ -120,7 +124,7 @@ public class AppGUIController implements Runnable {
         portTableModel.setRowCount(0);
 
         int i = 0;
-        for (PacketReceiver port : manager.getAvailiablePorts()) {
+        for (Port port : manager.getAvailiablePorts()) {
             data[0] = port.getPortName();
             data[1] = (port.getMacAddressByte() == null) ? "error" : DataTypeHelper.macAdressConvertor(port.getMacAddressByte());
             data[2] = (port.getIpAddressByte() == null) ? "not set" : DataTypeHelper.ipAdressConvertor(port.getIpAddressByte());
@@ -176,7 +180,7 @@ public class AppGUIController implements Runnable {
     }
 
     public void setPortDetails(String portName, String ipAddress, String subnetMask, Boolean fromGUI) {
-        for (PacketReceiver port : manager.getAvailiablePorts()) {
+        for (Port port : manager.getAvailiablePorts()) {
             if (port.getPortName().equals(portName)) {
                 port.setPortDetails(DataTypeHelper.ipAddressToByte(ipAddress), DataTypeHelper.ipAddressToByte(subnetMask));
                 if (fromGUI) {

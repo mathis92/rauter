@@ -1,485 +1,530 @@
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS 00:50:79:66:68:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.128.2 from 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO 00:50:79:66:68:01 from 08:00:27:02:A1:17
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.128.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.128.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/1 port IP 192.168.128.1 portMAc 08:00:27:02:A1:17 ipv4Address null pckt src IP 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.128.2 fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@e4e39d11
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS 00:50:79:66:68:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.128.2 from 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO 00:50:79:66:68:01 from 08:00:27:02:A1:17
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.128.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.128.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/1 port IP 192.168.128.1 portMAc 08:00:27:02:A1:17 ipv4Address null pckt src IP 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.128.2 fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@e4e39d11
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS 00:50:79:66:68:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.128.2 from 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO 00:50:79:66:68:01 from 08:00:27:02:A1:17
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.128.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.128.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/1 port IP 192.168.128.1 portMAc 08:00:27:02:A1:17 ipv4Address null pckt src IP 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.128.2 fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@e4e39d11
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS 00:50:79:66:68:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.128.2 from 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO 00:50:79:66:68:01 from 08:00:27:02:A1:17
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.128.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.128.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/1 port IP 192.168.128.1 portMAc 08:00:27:02:A1:17 ipv4Address null pckt src IP 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.128.2 fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@e4e39d11
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS 00:50:79:66:68:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.128.2 from 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO 00:50:79:66:68:01 from 08:00:27:02:A1:17
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.128.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.128.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/1 port IP 192.168.128.1 portMAc 08:00:27:02:A1:17 ipv4Address null pckt src IP 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.128.2 fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@e4e39d11
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS 00:50:79:66:68:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.128.2 from 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO 00:50:79:66:68:01 from 08:00:27:02:A1:17
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.128.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.128.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/1 port IP 192.168.128.1 portMAc 08:00:27:02:A1:17 ipv4Address null pckt src IP 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.128.2 fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@e4e39d11
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS 00:50:79:66:68:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.128.2 from 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO 00:50:79:66:68:01 from 08:00:27:02:A1:17
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - E--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre FORARDING  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - F--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - G--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - Directly connected zaznam z route tabulky 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - odosielam dotaz na arp tabulku port fastEthernet 0/0 packetsrc 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.129.1 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP null
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - SRC IP 192.168.129.1 DST IP192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - posielam ARP REQUEST src ip 192.168.129.1 dst ip 192.168.129.1 src mac 08:00:27:B4:48:34 port fastEthernet 0/0
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - vratil sa arp Reply s mac addr C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - I--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - J--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route.getPort 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - To FORWARDER AS SOURCE08:00:27:B4:48:34 AS DEST C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET TO 192.168.129.1 from 0.0.0.63
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder -  C8 02 10 9D 00 01 08 00 27 B4 48 34 08 00 45 00 00 54 5D 6D 00 00 00 00 00 00 00 00 00 3F C0 A8 81 01 08 00 B2 AD 6D 5D 00 01 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - E--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre FORARDING  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - F--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - G--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - Directly connected zaznam z route tabulky 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - odosielam dotaz na arp tabulku port fastEthernet 0/0 packetsrc 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.129.1 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@b0fd31fb
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - I--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - J--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route.getPort 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - To FORWARDER AS SOURCE08:00:27:B4:48:34 AS DEST C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET TO 192.168.129.1 from 0.0.0.63
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder -  C8 02 10 9D 00 01 08 00 27 B4 48 34 08 00 45 00 00 54 5D 6E 00 00 00 00 00 00 00 00 00 3F C0 A8 81 01 08 00 B0 AC 6F 5D 00 02 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - E--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre FORARDING  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - F--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - G--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - Directly connected zaznam z route tabulky 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - odosielam dotaz na arp tabulku port fastEthernet 0/0 packetsrc 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.129.1 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@b0fd31fb
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - I--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - J--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route.getPort 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - To FORWARDER AS SOURCE08:00:27:B4:48:34 AS DEST C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET TO 192.168.129.1 from 0.0.0.63
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder -  C8 02 10 9D 00 01 08 00 27 B4 48 34 08 00 45 00 00 54 5D 6F 00 00 00 00 00 00 00 00 00 3F C0 A8 81 01 08 00 AE AB 71 5D 00 03 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - E--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre FORARDING  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - F--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - G--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - Directly connected zaznam z route tabulky 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - odosielam dotaz na arp tabulku port fastEthernet 0/0 packetsrc 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.129.1 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@b0fd31fb
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - I--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - J--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route.getPort 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - To FORWARDER AS SOURCE08:00:27:B4:48:34 AS DEST C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET TO 192.168.129.1 from 0.0.0.63
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder -  C8 02 10 9D 00 01 08 00 27 B4 48 34 08 00 45 00 00 54 5D 70 00 00 00 00 00 00 00 00 00 3F C0 A8 81 01 08 00 AC AA 73 5D 00 04 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.128.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - E--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre FORARDING  fastEthernet 0/1 192.168.128.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - F--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - G--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - Directly connected zaznam z route tabulky 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - odosielam dotaz na arp tabulku port fastEthernet 0/0 packetsrc 192.168.128.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.129.1 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@b0fd31fb
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - I--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - J--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route.getPort 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - To FORWARDER AS SOURCE08:00:27:B4:48:34 AS DEST C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET TO 192.168.129.1 from 0.0.0.63
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder -  C8 02 10 9D 00 01 08 00 27 B4 48 34 08 00 45 00 00 54 5D 71 00 00 00 00 00 00 00 00 00 3F C0 A8 81 01 08 00 AA A9 75 5D 00 05 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.129.1
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.129.1
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.129.1
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.129.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP null
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - SRC IP 192.168.129.1 DST IP192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - posielam ARP REQUEST src ip 192.168.129.1 dst ip 192.168.130.2 src mac 08:00:27:B4:48:34 port fastEthernet 0/0
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - vratil sa arp Reply s mac addr C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@b0fd3adb
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@b0fd3adb
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.129.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@b0fd3adb
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG AWT-EventQueue-0 sk.mathis.stuba.router.RouterManager - 3 Router Manager start
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP null
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - SRC IP 192.168.129.1 DST IP192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - posielam ARP REQUEST src ip 192.168.129.1 dst ip 192.168.130.2 src mac 08:00:27:B4:48:34 port fastEthernet 0/0
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - vratil sa arp Reply s mac addr C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@f425d44a
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@f425d44a
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@f425d44a
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@f425d44a
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@f425d44a
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@f425d44a
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG AWT-EventQueue-0 sk.mathis.stuba.router.RouterManager - 3 Router Manager start
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP null
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - SRC IP 192.168.129.1 DST IP192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - posielam ARP REQUEST src ip 192.168.129.1 dst ip 192.168.130.2 src mac 08:00:27:B4:48:34 port fastEthernet 0/0
-INFO Thread-9 sk.mathis.stuba.equip.PacketForwarder - dostal som REPLY arp pre mna 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - vratil sa arp Reply s mac addr C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@55b59bdd
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@55b59bdd
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@55b59bdd
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.130.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - A--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - route destination network192.168.129.0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - B--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - fastEthernet 0/0 port IP 192.168.129.1 portMAc 08:00:27:B4:48:34 ipv4Address null pckt src IP 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - Ip adresa a port do hladania v ARP tabulke 192.168.130.2 fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - zaznam v arp tabulke 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.arp.ArpTable - najdena IP sk.mathis.stuba.arp.ArpTableItem@55b59bdd
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - D--------------------------------------------->
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - RESOLVED MAC ADDRESS C8:02:10:9D:00:01
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - resolve arp pckt SOSURCE ip 192.168.130.2
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW ICMP REPLY TO 192.168.130.2 from 192.168.129.1
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - NEW PACKET MACADDR TO C8:02:10:9D:00:01 from 08:00:27:B4:48:34
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - GOING TO BE SENT ON fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - PACKET FORWARDER  paket z  192.168.129.2 paket na 192.168.129.1 prijaty na interf fastEthernet 0/0
-DEBUG Thread-8 sk.mathis.stuba.equip.PacketForwarder - packet pre PORT NA ROUTERI  fastEthernet 0/0 192.168.129.1
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 14010 14010 14010 14010
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 8212 8212 8212 8212
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 14010 14010 14010 14010
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 14010 14010 14010 14010
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 24886 24886 24886 24886
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 8031 8031 8031 8031
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 8212 8212 8212 8212
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 14010 14010 14010 14010
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 14010 14010 14010 14010
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 8212 8212 8212 8212
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 98692 98692 98692 98692
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 8212 8212 8212 8212
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 12838 12838 12838 12838
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 9214 9214 9214 9214
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 15012 15012 15012 15012
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 9224 9224 9224 9224
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 15032 15032 15032 15032
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 15032 15032 15032 15032
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 25908 25908 25908 25908
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 9053 9053 9053 9053
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 9234 9234 9234 9234
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 15032 15032 15032 15032
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 15032 15032 15032 15032
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 9234 9234 9234 9234
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 99714 99714 99714 99714
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 9234 9234 9234 9234
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 13860 13860 13860 13860
+INFO Thread-7 sk.mathis.stuba.equip.Port - [NEW PCKT RIP] received from 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.133.4 -> 255.255.255.252 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.128.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.129.0 -> 255.255.255.0 RESULT: true
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP FITS TO RIP NETWORKS] 192.168.129.2
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 10235 10235 10235 10235
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 16033 16033 16033 16033
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 10235 10235 10235 10235
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 16033 16033 16033 16033
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 16033 16033 16033 16033
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 531 531 531 531
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 10054 10054 10054 10054
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 10235 10235 10235 10235
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 16033 16033 16033 16033
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 16033 16033 16033 16033
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 10235 10235 10235 10235
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 100715 100715 100715 100715
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 10235 10235 10235 10235
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 14861 14861 14861 14861
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 11236 11236 11236 11236
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 17034 17034 17034 17034
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 11236 11236 11236 11236
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 17044 17044 17044 17044
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 17044 17044 17044 17044
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 1542 1542 1542 1542
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 11065 11065 11065 11065
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 11246 11246 11246 11246
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 17044 17044 17044 17044
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 17044 17044 17044 17044
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 11246 11246 11246 11246
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 101726 101726 101726 101726
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 11246 11246 11246 11246
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 15872 15872 15872 15872
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 12248 12248 12248 12248
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 18046 18046 18046 18046
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 12248 12248 12248 12248
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 18046 18046 18046 18046
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 18046 18046 18046 18046
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 2544 2544 2544 2544
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 12067 12067 12067 12067
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 12248 12248 12248 12248
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 18046 18046 18046 18046
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 18046 18046 18046 18046
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 12248 12248 12248 12248
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 102728 102728 102728 102728
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 12248 12248 12248 12248
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 16874 16874 16874 16874
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 13249 13249 13249 13249
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 19047 19047 19047 19047
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 13249 13249 13249 13249
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 19047 19047 19047 19047
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 19047 19047 19047 19047
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 3545 3545 3545 3545
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 13078 13078 13078 13078
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 13259 13259 13259 13259
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 19057 19057 19057 19057
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 19057 19057 19057 19057
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 13259 13259 13259 13259
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 103739 103739 103739 103739
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 13259 13259 13259 13259
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 17885 17885 17885 17885
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 14261 14261 14261 14261
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 20059 20059 20059 20059
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 14261 14261 14261 14261
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 20059 20059 20059 20059
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 20059 20059 20059 20059
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 4557 4557 4557 4557
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 14080 14080 14080 14080
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 14261 14261 14261 14261
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 20059 20059 20059 20059
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 20059 20059 20059 20059
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 14261 14261 14261 14261
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 104741 104741 104741 104741
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 14261 14261 14261 14261
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 18887 18887 18887 18887
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 15262 15262 15262 15262
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 21060 21060 21060 21060
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 15262 15262 15262 15262
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 21060 21060 21060 21060
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 21060 21060 21060 21060
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 5558 5558 5558 5558
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 15081 15081 15081 15081
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 15262 15262 15262 15262
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 21070 21070 21070 21070
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 21070 21070 21070 21070
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 15272 15272 15272 15272
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 105752 105752 105752 105752
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 15272 15272 15272 15272
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 19898 19898 19898 19898
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 16274 16274 16274 16274
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 22072 22072 22072 22072
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 16274 16274 16274 16274
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 22072 22072 22072 22072
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 22072 22072 22072 22072
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 6570 6570 6570 6570
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 16093 16093 16093 16093
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 16274 16274 16274 16274
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 22072 22072 22072 22072
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 22072 22072 22072 22072
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 16274 16274 16274 16274
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 106754 106754 106754 106754
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 16274 16274 16274 16274
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 20900 20900 20900 20900
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 17275 17275 17275 17275
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 23073 23073 23073 23073
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 17275 17275 17275 17275
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 23073 23073 23073 23073
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 23073 23073 23073 23073
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 7571 7571 7571 7571
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 17094 17094 17094 17094
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 17275 17275 17275 17275
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 23073 23073 23073 23073
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 23073 23073 23073 23073
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 17275 17275 17275 17275
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 107755 107755 107755 107755
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 17285 17285 17285 17285
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 21911 21911 21911 21911
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 18287 18287 18287 18287
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 24085 24085 24085 24085
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 18287 18287 18287 18287
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 24085 24085 24085 24085
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 24085 24085 24085 24085
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 8583 8583 8583 8583
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 18106 18106 18106 18106
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 18287 18287 18287 18287
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 24085 24085 24085 24085
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 24085 24085 24085 24085
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 18287 18287 18287 18287
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 108767 108767 108767 108767
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 18287 18287 18287 18287
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 22913 22913 22913 22913
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 19288 19288 19288 19288
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 25086 25086 25086 25086
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 19288 19288 19288 19288
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 25086 25086 25086 25086
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 25086 25086 25086 25086
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 9584 9584 9584 9584
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 19107 19107 19107 19107
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 19288 19288 19288 19288
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 25096 25096 25096 25096
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 25096 25096 25096 25096
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 19298 19298 19298 19298
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 109778 109778 109778 109778
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 19298 19298 19298 19298
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 23924 23924 23924 23924
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 20300 20300 20300 20300
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 26098 26098 26098 26098
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 20300 20300 20300 20300
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 26098 26098 26098 26098
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 26098 26098 26098 26098
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 10596 10596 10596 10596
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 20119 20119 20119 20119
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 20300 20300 20300 20300
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 26098 26098 26098 26098
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 26098 26098 26098 26098
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 20300 20300 20300 20300
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 110780 110780 110780 110780
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 20300 20300 20300 20300
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 24926 24926 24926 24926
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 21301 21301 21301 21301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 27099 27099 27099 27099
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 21301 21301 21301 21301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 27099 27099 27099 27099
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 27099 27099 27099 27099
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 11597 11597 11597 11597
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 21120 21120 21120 21120
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 21301 21301 21301 21301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 27099 27099 27099 27099
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 27109 27109 27109 27109
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 21311 21311 21311 21311
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 111791 111791 111791 111791
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 21311 21311 21311 21311
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 25937 25937 25937 25937
+INFO Thread-9 sk.mathis.stuba.equip.Port - [NEW PCKT RIP] received from 192.168.133.6
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.133.5 network:  192.168.133.4 -> 255.255.255.252 RESULT: true
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP FITS TO RIP NETWORKS] 192.168.133.6
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.133.5 network:  192.168.128.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.133.6
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.133.5 network:  192.168.129.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.133.6
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 22312 22312 22312 22312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 240 240 240 240
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 22312 22312 22312 22312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 240 240 240 240
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 240 240 240 240
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 12608 12608 12608 12608
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 22131 22131 22131 22131
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 22312 22312 22312 22312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 240 240 240 240
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 240 240 240 240
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 22312 22312 22312 22312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 112792 112792 112792 112792
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 22312 22312 22312 22312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 26938 26938 26938 26938
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 23314 23314 23314 23314
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 1242 1242 1242 1242
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 23314 23314 23314 23314
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 1242 1242 1242 1242
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 1242 1242 1242 1242
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 13610 13610 13610 13610
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 23143 23143 23143 23143
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 23324 23324 23324 23324
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 1252 1252 1252 1252
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 1252 1252 1252 1252
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 23324 23324 23324 23324
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 113804 113804 113804 113804
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 23324 23324 23324 23324
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 27950 27950 27950 27950
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 24325 24325 24325 24325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 2253 2253 2253 2253
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 24325 24325 24325 24325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 2253 2253 2253 2253
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 2253 2253 2253 2253
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 14621 14621 14621 14621
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 24144 24144 24144 24144
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 24325 24325 24325 24325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 2253 2253 2253 2253
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 2253 2253 2253 2253
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 24325 24325 24325 24325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 114805 114805 114805 114805
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 24325 24325 24325 24325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 28951 28951 28951 28951
+INFO Thread-9 sk.mathis.stuba.equip.Port - [NEW PCKT RIP] received from 192.168.133.6
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.133.5 network:  192.168.133.4 -> 255.255.255.252 RESULT: true
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP FITS TO RIP NETWORKS] 192.168.133.6
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.133.5 network:  192.168.128.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.133.6
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.133.5 network:  192.168.129.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.133.6
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 25327 25327 25327 25327
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 3255 3255 3255 3255
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 25327 25327 25327 25327
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 3255 3255 3255 3255
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 3255 3255 3255 3255
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 15623 15623 15623 15623
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 25156 25156 25156 25156
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 25337 25337 25337 25337
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 3265 3265 3265 3265
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 3265 3265 3265 3265
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 25337 25337 25337 25337
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 115817 115817 115817 115817
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 25337 25337 25337 25337
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 882 882 882 882
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 26338 26338 26338 26338
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 4266 4266 4266 4266
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 26338 26338 26338 26338
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 4266 4266 4266 4266
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 4266 4266 4266 4266
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 16634 16634 16634 16634
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 26157 26157 26157 26157
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 26338 26338 26338 26338
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 4266 4266 4266 4266
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 4266 4266 4266 4266
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 26338 26338 26338 26338
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 116818 116818 116818 116818
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 26338 26338 26338 26338
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 1883 1883 1883 1883
+INFO Thread-7 sk.mathis.stuba.equip.Port - [NEW PCKT RIP] received from 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.133.4 -> 255.255.255.252 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.128.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.129.0 -> 255.255.255.0 RESULT: true
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP FITS TO RIP NETWORKS] 192.168.129.2
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 471 471 471 471
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 5268 5268 5268 5268
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 471 471 471 471
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 5268 5268 5268 5268
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 5278 5278 5278 5278
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 481 481 481 481
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 27169 27169 27169 27169
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 481 481 481 481
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 5278 5278 5278 5278
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 5278 5278 5278 5278
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 481 481 481 481
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 117830 117830 117830 117830
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 481 481 481 481
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 2895 2895 2895 2895
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] Sat Apr 25 03:30:11 CEST 2015
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding DIRECT route to payload 192.168.128.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding DIRECT route to payload 192.168.129.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding DIRECT route to payload 192.168.133.4
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.130.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.130.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.131.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.131.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.132.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.132.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.132.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.133.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.133.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.133.8
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.133.8
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.133.8
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.134.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] adding RIP route to payload 192.168.134.0
+INFO Thread-3 ak.mathis.stuba.rip.RipTableItem - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.133.4 -> 255.255.255.252RESULT: false
+INFO Thread-3 ak.mathis.stuba.rip.RipTableItem - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.128.0 -> 255.255.255.0RESULT: false
+INFO Thread-3 ak.mathis.stuba.rip.RipTableItem - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.129.0 -> 255.255.255.0RESULT: true
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] sending RIP response on port fastEthernet 0/0 ip address 192.168.129.1 mac address 08:00:27:B4:48:34
+INFO Thread-3 ak.mathis.stuba.rip.RipTableItem - [FIT to network check]  src IP: 192.168.128.1 network:  192.168.133.4 -> 255.255.255.252RESULT: false
+INFO Thread-3 ak.mathis.stuba.rip.RipTableItem - [FIT to network check]  src IP: 192.168.128.1 network:  192.168.128.0 -> 255.255.255.0RESULT: true
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] sending RIP response on port fastEthernet 0/1 ip address 192.168.128.1 mac address 08:00:27:02:A1:17
+INFO Thread-3 ak.mathis.stuba.rip.RipTableItem - [FIT to network check]  src IP: 192.168.133.5 network:  192.168.133.4 -> 255.255.255.252RESULT: true
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [RipResponseManager] sending RIP response on port fastEthernet 0/2 ip address 192.168.133.5 mac address 08:00:27:7B:D0:D3
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 1492 1492 1492 1492
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 6289 6289 6289 6289
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 1492 1492 1492 1492
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 6299 6299 6299 6299
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 6299 6299 6299 6299
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 1502 1502 1502 1502
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 28190 28190 28190 28190
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 1502 1502 1502 1502
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 6299 6299 6299 6299
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 6299 6299 6299 6299
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 1502 1502 1502 1502
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 118851 118851 118851 118851
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 1502 1502 1502 1502
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 3916 3916 3916 3916
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 2504 2504 2504 2504
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 7301 7301 7301 7301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 2504 2504 2504 2504
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 7301 7301 7301 7301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 7301 7301 7301 7301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 2504 2504 2504 2504
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 29192 29192 29192 29192
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 2504 2504 2504 2504
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 7301 7301 7301 7301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 7301 7301 7301 7301
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 2504 2504 2504 2504
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 119853 119853 119853 119853
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 2504 2504 2504 2504
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 4918 4918 4918 4918
+INFO Thread-7 sk.mathis.stuba.equip.Port - [NEW PCKT RIP] received from 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.133.4 -> 255.255.255.252 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.128.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.129.0 -> 255.255.255.0 RESULT: true
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 3505 3505 3505 3505
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 8312 8312 8312 8312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 3515 3515 3515 3515
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP FITS TO RIP NETWORKS] 192.168.129.2
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 8312 8312 8312 8312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 8312 8312 8312 8312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 3515 3515 3515 3515
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 0 0 0 0
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 3515 3515 3515 3515
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 8312 8312 8312 8312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 8312 8312 8312 8312
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 3515 3515 3515 3515
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 120864 120864 120864 120864
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 3515 3515 3515 3515
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 5929 5929 5929 5929
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 4516 4516 4516 4516
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 9313 9313 9313 9313
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 4516 4516 4516 4516
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 9313 9313 9313 9313
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 9313 9313 9313 9313
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 4516 4516 4516 4516
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 1001 1001 1001 1001
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 4516 4516 4516 4516
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 9313 9313 9313 9313
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 9313 9313 9313 9313
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 4526 4526 4526 4526
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 121875 121875 121875 121875
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 4526 4526 4526 4526
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 6940 6940 6940 6940
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 5528 5528 5528 5528
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 10325 10325 10325 10325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 5528 5528 5528 5528
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 10325 10325 10325 10325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 10325 10325 10325 10325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 5528 5528 5528 5528
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 2013 2013 2013 2013
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 5528 5528 5528 5528
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 10325 10325 10325 10325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 10325 10325 10325 10325
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 5528 5528 5528 5528
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 122877 122877 122877 122877
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 5528 5528 5528 5528
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 7942 7942 7942 7942
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 6529 6529 6529 6529
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 11326 11326 11326 11326
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 6529 6529 6529 6529
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 11326 11326 11326 11326
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 11326 11326 11326 11326
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 6529 6529 6529 6529
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 3014 3014 3014 3014
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 6529 6529 6529 6529
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 11326 11326 11326 11326
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 11326 11326 11326 11326
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 6529 6529 6529 6529
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 123878 123878 123878 123878
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 6529 6529 6529 6529
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 8943 8943 8943 8943
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 7531 7531 7531 7531
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 12328 12328 12328 12328
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 7531 7531 7531 7531
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 12328 12328 12328 12328
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 12328 12328 12328 12328
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 7541 7541 7541 7541
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 4026 4026 4026 4026
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 7541 7541 7541 7541
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 12338 12338 12338 12338
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 12338 12338 12338 12338
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 7541 7541 7541 7541
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 124890 124890 124890 124890
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 7541 7541 7541 7541
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 9955 9955 9955 9955
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 8542 8542 8542 8542
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 13339 13339 13339 13339
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 8542 8542 8542 8542
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 13339 13339 13339 13339
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 13339 13339 13339 13339
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 8542 8542 8542 8542
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 5027 5027 5027 5027
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 8542 8542 8542 8542
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 13339 13339 13339 13339
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 13339 13339 13339 13339
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 8542 8542 8542 8542
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 125891 125891 125891 125891
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 8542 8542 8542 8542
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 10956 10956 10956 10956
+INFO Thread-7 sk.mathis.stuba.equip.Port - [NEW PCKT RIP] received from 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.133.4 -> 255.255.255.252 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.128.0 -> 255.255.255.0 RESULT: false
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP DOES NOT FIT TO RIP NETWORKS] 192.168.129.2
+INFO Thread-5 sk.mathis.stuba.equip.Packet - [FIT to network check]  src IP: 192.168.129.1 network:  192.168.129.0 -> 255.255.255.0 RESULT: true
+INFO Thread-5 ak.mathis.stuba.rip.RipManager - [RIP FITS TO RIP NETWORKS] 192.168.129.2
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 9544 9544 9544 9544
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 14341 14341 14341 14341
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 9544 9544 9544 9544
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 14341 14341 14341 14341
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 14341 14341 14341 14341
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 511 511 511 511
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 6029 6029 6029 6029
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 9544 9544 9544 9544
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 14341 14341 14341 14341
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 14351 14351 14351 14351
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 9554 9554 9554 9554
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 126903 126903 126903 126903
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 9554 9554 9554 9554
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 11968 11968 11968 11968
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 10555 10555 10555 10555
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 15352 15352 15352 15352
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 10555 10555 10555 10555
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 15352 15352 15352 15352
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 15352 15352 15352 15352
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 1522 1522 1522 1522
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 7040 7040 7040 7040
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 10555 10555 10555 10555
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 15352 15352 15352 15352
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 15352 15352 15352 15352
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 10555 10555 10555 10555
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 127904 127904 127904 127904
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 10555 10555 10555 10555
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 12969 12969 12969 12969
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 11557 11557 11557 11557
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 16354 16354 16354 16354
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 11557 11557 11557 11557
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 16354 16354 16354 16354
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 16354 16354 16354 16354
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 2524 2524 2524 2524
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 8042 8042 8042 8042
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 11557 11557 11557 11557
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 16354 16354 16354 16354
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 16354 16354 16354 16354
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 11557 11557 11557 11557
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 128916 128916 128916 128916
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 11567 11567 11567 11567
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 13981 13981 13981 13981
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 12568 12568 12568 12568
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 17365 17365 17365 17365
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 12568 12568 12568 12568
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 17365 17365 17365 17365
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 17365 17365 17365 17365
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 3535 3535 3535 3535
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 9053 9053 9053 9053
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 12568 12568 12568 12568
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 17365 17365 17365 17365
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 17365 17365 17365 17365
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 12568 12568 12568 12568
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 129917 129917 129917 129917
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 12568 12568 12568 12568
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 14982 14982 14982 14982
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 13569 13569 13569 13569
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.130.0 18366 18366 18366 18366
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 13569 13569 13569 13569
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.131.0 18366 18366 18366 18366
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 18366 18366 18366 18366
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 4536 4536 4536 4536
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.132.0 10054 10054 10054 10054
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 13569 13569 13569 13569
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.0 18366 18366 18366 18366
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 18366 18366 18366 18366
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 13569 13569 13569 13569
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.133.8 130918 130918 130918 130918
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 13569 13569 13569 13569
+INFO Thread-3 ak.mathis.stuba.rip.RipTimeManager - [STATE TIMER] 192.168.134.0 15983 15983 15983 15983

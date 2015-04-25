@@ -23,7 +23,7 @@ import sk.mathis.stuba.equip.ArpPacketForwarder;
 import sk.mathis.stuba.equip.DataTypeHelper;
 import sk.mathis.stuba.equip.Packet;
 import sk.mathis.stuba.equip.PacketForwarder;
-import sk.mathis.stuba.equip.PacketReceiver;
+import sk.mathis.stuba.equip.Port;
 import sk.mathis.stuba.routingTable.RoutingTable;
 
 /**
@@ -32,8 +32,8 @@ import sk.mathis.stuba.routingTable.RoutingTable;
  */
 public class RouterManager {
 
-    List<PacketReceiver> availiablePorts;
-    List<PacketReceiver> receiverList = null;
+    List<Port> availiablePorts;
+    List<Port> receiverList = null;
     PacketForwarder packetForwarder = null;
     Queue<Packet> packetBuffer;
     Queue<Packet> arpPacketBuffer;
@@ -66,9 +66,6 @@ public class RouterManager {
         arpTable = new ArpTable();
         routingTable = new RoutingTable(this);
         ripManager = new RipManager(this);
-        new Thread(arpTable).start();
-        new Thread(ripManager).start();
-        new Thread(routingTable).start();
 
     }
 
@@ -84,28 +81,31 @@ public class RouterManager {
         int portNum = 0;
         for (PcapIf port : ports) {
             System.out.println(port.getName() + " " + DataTypeHelper.macAdressConvertor(port.getHardwareAddress()));
-            availiablePorts.add(new PacketReceiver(port, packetBuffer, arpPacketBuffer, "fastEthernet 0/" + portNum, arpTable, ripPacketBuffer, ripManager));
+            availiablePorts.add(new Port(port, packetBuffer, arpPacketBuffer, "fastEthernet 0/" + portNum, arpTable, ripPacketBuffer, ripManager));
             portNum++;
         }
     }
 
     public void start() {
-        System.out.println("Router manager start");
-        logger.debug(availiablePorts.size() + " Router Manager start");
+        // System.out.println("Router manager start");
+        logger.info("[RouterManager] Start");
+        new Thread(arpTable).start();
+        new Thread(ripManager).start();
+        new Thread(routingTable).start();
         if (!availiablePorts.isEmpty()) {
-            for (PacketReceiver port : availiablePorts) {
+            for (Port port : availiablePorts) {
                 port.startThread();
             }
             packetForwarder = new PacketForwarder(packetBuffer, arpPacketBuffer, arpTable, availiablePorts, routingTable);
             new Thread(packetForwarder).start();
             Thread thread = new Thread(new ArpPacketForwarder(arpPacketBuffer, arpTable));
             thread.start();
-            ripManager = new RipManager(this);
-            new Thread(ripManager).start();
+            //ripManager = new RipManager(this);
+            //new Thread(ripManager).start();
         }
     }
 
-    public List<PacketReceiver> getAvailiablePorts() {
+    public List<Port> getAvailiablePorts() {
         return availiablePorts;
     }
 

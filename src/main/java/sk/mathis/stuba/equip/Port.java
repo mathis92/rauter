@@ -24,7 +24,7 @@ import sk.mathis.stuba.headers.MacAddress;
  *
  * @author Mathis
  */
-public class PacketReceiver implements Runnable {
+public class Port implements Runnable {
 
     private final StringBuilder errbuf = new StringBuilder();
     private final Queue<Packet> buffer;
@@ -36,17 +36,18 @@ public class PacketReceiver implements Runnable {
     private Pcap pcap;
     private Packet pckt;
     private Boolean run = true;
-    private static final Logger logger = LoggerFactory.getLogger(PacketReceiver.class);
+    private static final Logger logger = LoggerFactory.getLogger(Port.class);
 
     private String portName;
     private PcapIf port;
 
-    private byte[] ipAddress = null;
+    private byte[] ipAddressByte = null;
+    private IpV4Address ipAddress = null;
     private byte[] macAddress;
     private byte[] subnetMask;
-    private PacketReceiver packetReceiver = this;
+    private Port packetReceiver = this;
 
-    public PacketReceiver(PcapIf port, Queue<Packet> buffer, Queue<Packet> arpBuffer, String portName, ArpTable arpTable, Queue<Packet> ripBuffer, RipManager ripManager) {
+    public Port(PcapIf port, Queue<Packet> buffer, Queue<Packet> arpBuffer, String portName, ArpTable arpTable, Queue<Packet> ripBuffer, RipManager ripManager) {
         this.port = port;
         this.buffer = buffer;
         this.pcap = null;
@@ -58,7 +59,7 @@ public class PacketReceiver implements Runnable {
         try {
             macAddress = port.getHardwareAddress();
         } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PacketReceiver.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Port.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         this.portName = portName;
@@ -77,27 +78,30 @@ public class PacketReceiver implements Runnable {
             public void nextPacket(PcapPacket packet, String user) {
 
                 if (packet != null) {
-                    pckt = new Packet(packet, packetReceiver, pcap);
-                    if (pckt.getFrame().getIsArp()) {
-                        System.out.println("ARP PACKETLA");
-                        arpBuffer.add(pckt);
-                    } else if (pckt.getFrame().getIsIpv4() && pckt.getFrame().getIpv4parser().isIsUdp() && pckt.getFrame().getIpv4parser().getUdpParser().isIsRip()) {
-                        System.out.println("RIP PACKETLA");
 
-                        if (Arrays.equals(pckt.getFrame().getIpv4parser().getDestinationIPbyte(), DataTypeHelper.ipAddressToByteFromString("224.0.0.9"))) {
-                            if (pckt.getFrame().getIpv4parser().isIsUdp()) {
-                                if (pckt.getFrame().getIpv4parser().getUdpParser().isIsRip()) {
-                                    ripBuffer.add(pckt);
+                    pckt = new Packet(packet, packetReceiver, pcap);
+                    if (!Arrays.equals(packetReceiver.getMacAddressByte(), pckt.getSrcMac().getMacByte())) {
+                        if (pckt.getFrame().getIsArp()) {
+                            System.out.println("ARP PACKETLA");
+                            arpBuffer.add(pckt);
+                        } else if (pckt.getFrame().getIsIpv4() && pckt.getFrame().getIpv4parser().isIsUdp() && pckt.getFrame().getIpv4parser().getUdpParser().isIsRip()) {
+                           // System.out.println("PRIJAL SOM RIP src IP " + pckt.getSourceIp() );
+                            logger.info("[NEW PCKT RIP] received from " + pckt.getSourceIp());
+                            if (Arrays.equals(pckt.getFrame().getIpv4parser().getDestinationIPbyte(), DataTypeHelper.ipAddressToByteFromString("224.0.0.9"))) {
+                                if (pckt.getFrame().getIpv4parser().isIsUdp()) {
+                                    if (pckt.getFrame().getIpv4parser().getUdpParser().isIsRip()) {
+                                        ripBuffer.add(pckt);
+                                    }
                                 }
                             }
-                        }
-                    } else {
-                        if (pckt.getFrame().getIsIpv4()) {
-                            if (pckt.getFrame().getIpv4parser().getIsIcmp()) {
-                                System.out.println("ICMP PACKETLA");
+                        } else {
+                            if (pckt.getFrame().getIsIpv4()) {
+                                if (pckt.getFrame().getIpv4parser().getIsIcmp()) {
+                                    System.out.println("ICMP PACKETLA");
+                                }
                             }
+                            buffer.add(pckt);
                         }
-                        buffer.add(pckt);
                     }
                 }
             }
@@ -136,7 +140,7 @@ public class PacketReceiver implements Runnable {
     }
 
     public byte[] getIpAddressByte() {
-        return ipAddress;
+        return ipAddressByte;
     }
 
     public PcapIf getPort() {
@@ -159,14 +163,17 @@ public class PacketReceiver implements Runnable {
         return macAddress;
     }
 
-    public MacAddress getMacAddress(){
+    public MacAddress getMacAddress() {
         return new MacAddress(macAddress);
     }
-    public IpV4Address getIpAddress(){
-        return new IpV4Address(ipAddress);
+
+    public IpV4Address getIpAddress() {
+        return ipAddress;
     }
+
     public void setPortDetails(byte[] ipAddress, byte[] subnetMask) {
-        this.ipAddress = ipAddress;
+        this.ipAddressByte = ipAddress;
+        this.ipAddress = new IpV4Address(ipAddress);
         this.subnetMask = subnetMask;
 
     }
